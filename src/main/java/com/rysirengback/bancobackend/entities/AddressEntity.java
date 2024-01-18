@@ -1,15 +1,17 @@
 package com.rysirengback.bancobackend.entities;
 
 import jakarta.persistence.*;
+
+import java.io.Serial;
+import java.sql.Date;
+
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SourceType;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import java.io.Serial;
-import java.sql.Date;
 
 @Data
 @SuperBuilder
