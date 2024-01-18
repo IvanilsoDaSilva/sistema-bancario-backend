@@ -10,5 +10,5 @@ import java.util.List;
 @NoArgsConstructor
 public abstract class Client {
 	@OneToMany(mappedBy = "agency", cascade = CascadeType.ALL)
-	protected List<Account> accounts;
+	protected List<AccountEntity> accounts;
 }

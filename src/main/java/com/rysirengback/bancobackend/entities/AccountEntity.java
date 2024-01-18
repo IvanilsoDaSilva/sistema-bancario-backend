@@ -1,5 +1,7 @@
 package com.rysirengback.bancobackend.entities;
 
+import com.rysirengback.bancobackend.enums.*;
+
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -9,15 +11,15 @@ import org.hibernate.annotations.SourceType;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serial;
+import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
 
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @Entity
-@Table(name="agency")
-public class Agency {
+@Table(name="account")
+public class AccountEntity implements Serializable {
 	@Serial
     private static final long serialVersionUID = 1L;
 	
@@ -32,14 +34,31 @@ public class Agency {
 
     @UpdateTimestamp(source = SourceType.DB)
     private Date lastModifiedDate;
-  
+	
     @Column(name = "number")
 	private String number;
+  
+    @Column(name = "password")
+	private String password;
     
-    @OneToMany(mappedBy = "agency", cascade = CascadeType.ALL)
-	private List<Account> accounts;
+    @Column(name = "balance")
+	private double balance;
     
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "address_id")
-    private Address address;
+    @Column(name = "accountType")
+	private AccountTypeEnum accountType;
+	
+	@Column(name = "locked")
+	private boolean locked;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "legal_person_id", referencedColumnName = "id")
+	private LegalPersonEntity legalPerson;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "individual_person_id", referencedColumnName = "id")
+	private IndividualPersonEntity individualPerson;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "agency_id", referencedColumnName = "id")
+	private AgencyEntity agency;
 }

@@ -1,5 +1,5 @@
 package com.rysirengback.bancobackend.enums;
 
-public enum AccountType {
+public enum AccountTypeEnum {
 	CORRENTE, POUPANÇA, PAGAMENTOS, UNIVERSITÁRIA
 }

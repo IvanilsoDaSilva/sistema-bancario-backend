@@ -1,29 +1,23 @@
 package com.rysirengback.bancobackend.entities;
 
-import java.io.Serial;
-import java.sql.Date;
-
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SourceType;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import java.io.Serial;
+import java.sql.Date;
+import java.util.List;
 
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @Entity
-@Table(name="individual_person")
-public class IndividualPerson extends Client {
+@Table(name="agency")
+public class AgencyEntity {
 	@Serial
     private static final long serialVersionUID = 1L;
 	
@@ -38,16 +32,14 @@ public class IndividualPerson extends Client {
 
     @UpdateTimestamp(source = SourceType.DB)
     private Date lastModifiedDate;
+  
+    @Column(name = "number")
+	private String number;
     
-    @Column(name = "name")
-	private String name;
-	
-    @Column(name = "cpf")
-	private String cpf;
-	
-    @Column(name = "rg")
-	private String rg;
-	
-    @Column(name = "birth")
-	private Date birth;
+    @OneToMany(mappedBy = "agency", cascade = CascadeType.ALL)
+	private List<AccountEntity> accounts;
+    
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+    private AddressEntity address;
 }

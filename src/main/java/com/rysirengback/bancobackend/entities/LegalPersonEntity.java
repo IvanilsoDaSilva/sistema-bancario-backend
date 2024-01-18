@@ -23,7 +23,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Entity
 @Table(name="legal_person")
-public class LegalPerson extends Client {
+public class LegalPersonEntity extends Client {
 	@Serial
     private static final long serialVersionUID = 1L;
 	

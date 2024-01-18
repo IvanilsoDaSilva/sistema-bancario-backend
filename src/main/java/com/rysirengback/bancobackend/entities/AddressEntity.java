@@ -16,7 +16,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @Entity
 @Table(name="address")
-public class Address {
+public class AddressEntity {
 	@Serial
 	private static final long serialVersionUID = 1L;
 	
@@ -57,5 +57,5 @@ public class Address {
 	private String complement;
 	
 	@OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
-	private Agency agency;
+	private AgencyEntity agency;
 }
