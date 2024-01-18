@@ -4,6 +4,7 @@ import com.rysirengback.bancobackend.dto.request.CreateIndividualPersonAccountDT
 import com.rysirengback.bancobackend.entities.AccountEntity;
 import com.rysirengback.bancobackend.entities.IndividualPersonEntity;
 import com.rysirengback.bancobackend.repositories.AccountRepository;
+import com.rysirengback.bancobackend.repositories.AgencyRepository;
 import com.rysirengback.bancobackend.repositories.IndividualPersonRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -18,12 +19,12 @@ public class AccountService {
 	private final AccountRepository accountRepository;
 	private final IndividualPersonRepository individualPersonRepository;
 	private final ModelMapper modelMapper;
+	private final AgencyRepository agencyRepository;
 	
 	public void createIndividualPersonAccount(CreateIndividualPersonAccountDTO request) {
 		request.setIndividualPerson(individualPersonRepository.save(modelMapper.map(request, IndividualPersonEntity.class)));
+		request.setAgency(agencyRepository.findByNumber(request.getAgencyCode()));
 		accountRepository.save(modelMapper.map(request, AccountEntity.class));
-		
-		
 	}
 	
 //	public ReadIndividualPersonDTO readIndividualPerson() {

@@ -23,7 +23,7 @@ public class AccountController {
 	
 	@PostMapping(value = "/individual-person/create")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void createAccount(@RequestBody CreateIndividualPersonAccountDTO request) {
+	public void createIndividualPersonAccount(@RequestBody CreateIndividualPersonAccountDTO request) {
 		accountService.createIndividualPersonAccount(request);
 	}
 }

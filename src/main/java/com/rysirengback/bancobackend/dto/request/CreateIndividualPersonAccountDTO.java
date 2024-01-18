@@ -4,8 +4,6 @@ import com.rysirengback.bancobackend.entities.AgencyEntity;
 import com.rysirengback.bancobackend.entities.IndividualPersonEntity;
 import com.rysirengback.bancobackend.enums.AccountTypeEnum;
 
-import jakarta.persistence.Column;
-
 import java.sql.Date;
 
 import lombok.Data;
@@ -33,4 +31,6 @@ public class CreateIndividualPersonAccountDTO {
 //	private LegalPersonEntity legalPerson;
 	private IndividualPersonEntity individualPerson;
 	private AgencyEntity agency;
+	
+	private String agencyCode;
 }
