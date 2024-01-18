@@ -2,6 +2,9 @@ package com.rysirengback.bancobackend.dto.request;
 
 import com.rysirengback.bancobackend.entities.AgencyEntity;
 import com.rysirengback.bancobackend.entities.IndividualPersonEntity;
+import com.rysirengback.bancobackend.enums.AccountTypeEnum;
+
+import jakarta.persistence.Column;
 
 import java.sql.Date;
 
@@ -25,6 +28,7 @@ public class CreateIndividualPersonAccountDTO {
 //	private String number;
 	private String password;
 //	private double balance;
+	private AccountTypeEnum accountType;
 //	private boolean locked;
 //	private LegalPersonEntity legalPerson;
 	private IndividualPersonEntity individualPerson;
