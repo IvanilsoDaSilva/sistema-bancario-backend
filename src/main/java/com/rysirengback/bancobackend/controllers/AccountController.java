@@ -23,6 +23,7 @@ public class AccountController {
 	
 	@PostMapping(value = "/individual-person/create")
 	@ResponseStatus(HttpStatus.CREATED)
+	@CrossOrigin
 	public void createIndividualPersonAccount(@RequestBody CreateIndividualPersonAccountDTO request) {
 		accountService.createIndividualPersonAccount(request);
 	}

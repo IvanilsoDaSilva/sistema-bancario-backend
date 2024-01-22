@@ -27,6 +27,7 @@ public class ClientController {
 	
 	@PostMapping(value = "/individual-person/create")
 	@ResponseStatus(HttpStatus.CREATED)
+	@CrossOrigin
 	public void createIndividualPerson(@RequestBody CreateIndividualPersonDTO request) {
 		individualPersonService.createIndividualPerson(request);
 	}
