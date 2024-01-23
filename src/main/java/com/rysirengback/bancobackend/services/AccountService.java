@@ -10,6 +10,7 @@ import com.rysirengback.bancobackend.repositories.AgencyRepository;
 import com.rysirengback.bancobackend.repositories.IndividualPersonRepository;
 import com.rysirengback.bancobackend.repositories.LegalPersonRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import org.modelmapper.ModelMapper;
@@ -25,13 +26,14 @@ public class AccountService {
 	private final ModelMapper modelMapper;
 	private final AgencyRepository agencyRepository;
 	
-	
+	@Transactional
 	public void createIndividualPersonAccount(CreateIndividualPersonAccountDTO request) {
 		request.setIndividualPerson(individualPersonRepository.save(modelMapper.map(request, IndividualPersonEntity.class)));
 		request.setAgency(agencyRepository.findByNumber(request.getAgencyCode()));
 		accountRepository.save(modelMapper.map(request, AccountEntity.class));
 	}
 	
+	@Transactional
 	public void createLegalPersonAccount(CreateLegalPersonAccountDTO request) {
 		request.setLegalPerson(legalPersonRepository.save(modelMapper.map(request, LegalPersonEntity.class)));
 		request.setAgency(agencyRepository.findByNumber(request.getAgencyCode()));

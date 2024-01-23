@@ -40,10 +40,10 @@ public class IndividualPersonEntity extends Client {
     @UpdateTimestamp(source = SourceType.DB)
     private Date lastModifiedDate;
     
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
 	private String name;
 	
-    @Column(name = "cpf", unique=true)
+    @Column(name = "cpf", unique=true, nullable = false)
 	private String cpf;
 	
     @Column(name = "rg")
