@@ -43,6 +43,6 @@ public class LegalPersonEntity extends Client {
     @Column(name = "company_name")
 	private String companyName;
 	
-	@Column(name = "cnpj")
+	@Column(name = "cnpj", unique=true)
 	private String cnpj;
 }

@@ -1,6 +1,7 @@
 package com.rysirengback.bancobackend.controllers;
 
 import com.rysirengback.bancobackend.dto.request.CreateIndividualPersonAccountDTO;
+import com.rysirengback.bancobackend.dto.request.CreateLegalPersonAccountDTO;
 import com.rysirengback.bancobackend.services.AccountService;
 
 import java.io.IOException;
@@ -26,5 +27,12 @@ public class AccountController {
 	@CrossOrigin
 	public void createIndividualPersonAccount(@RequestBody CreateIndividualPersonAccountDTO request) {
 		accountService.createIndividualPersonAccount(request);
+	}
+	
+	@PostMapping(value = "/legal-person/create")
+	@ResponseStatus(HttpStatus.CREATED)
+	@CrossOrigin
+	public void createLegalPersonAccount(@RequestBody CreateLegalPersonAccountDTO request) {
+		accountService.createLegalPersonAccount(request);
 	}
 }

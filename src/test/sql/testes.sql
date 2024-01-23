@@ -10,3 +10,4 @@ SELECT ip.name `nome cliente`, ip.cpf `cpf cliente`,  ac.number `numero da conta
 SELECT * FROM agency;
 SELECT * FROM account;
 SELECT * FROM individual_person;
+SELECT * FROM legal_person;

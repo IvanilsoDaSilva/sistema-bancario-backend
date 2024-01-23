@@ -41,7 +41,7 @@ public class AccountEntity implements Serializable {
     @Column(name = "number")
 	private String number;
   
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
 	private String password;
     
     @Column(name = "balance")
