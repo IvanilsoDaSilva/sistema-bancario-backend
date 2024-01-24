@@ -37,15 +37,26 @@ public class AccountService {
 	
 	@Transactional
 	public ReadAccountDTO loginAccount(LoginAccountDTO request) {
+		ReadAccountDTO response;
 		AccountEntity account = accountRepository.findByNumberAndPassword(request.getNumber(), request.getPassword());
 		
+		response = modelMapper.map(account, ReadAccountDTO.class);
+		
 		if(account.getIndividualPerson() != null ) {
-			System.out.println("Pessoa fisica");
+			IndividualPersonEntity person = modelMapper.map(individualPersonRepository.findById(response.getIndividualPersonId()), IndividualPersonEntity.class);
+			
+			response.setName(person.getName());
+			response.setCpf(person.getCpf());
+			response.setRg(person.getRg());
+			response.setBirth(person.getBirth());
 		} else {
-			System.out.println("Pessoa juridica");
+			LegalPersonEntity person = modelMapper.map(legalPersonRepository.findById(response.getLegalPersonId()), LegalPersonEntity.class);
+			
+			response.setCompanyName(person.getCompanyName());
+			response.setCnpj(person.getCnpj());
 		}
 		
-		return new ReadAccountDTO();
+		return response;
 	}
 	
 	@Transactional
