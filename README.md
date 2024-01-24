@@ -43,7 +43,7 @@ This project is intended to provide a solid foundation for anyone just starting 
 <h2 align="right" id="ponto1">1.4. HOW TO USE </h2>
 <p align="right">Use the following commands (if there are commands) by <kbd>CTRL</kbd>+<kbd>V</kbd> in the terminal and/or console.</p>
 
-📌 IMPORT THE CODE FROM YOUR IDE
+📌 Import code through maven into your ide
 
 <h2 align="right">1.5. OTHER REPOSITORIES 📘</h2>
 
