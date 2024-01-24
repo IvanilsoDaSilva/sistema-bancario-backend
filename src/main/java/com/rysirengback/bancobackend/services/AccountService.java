@@ -1,19 +1,14 @@
 package com.rysirengback.bancobackend.services;
 
-import com.rysirengback.bancobackend.dto.request.CreateIndividualPersonAccountDTO;
-import com.rysirengback.bancobackend.dto.request.CreateLegalPersonAccountDTO;
-import com.rysirengback.bancobackend.dto.request.LoginAccountDTO;
-import com.rysirengback.bancobackend.dto.response.ReadAccountDTO;
+import com.rysirengback.bancobackend.dto.request.*;
+import com.rysirengback.bancobackend.dto.response.*;
 import com.rysirengback.bancobackend.entities.AccountEntity;
 import com.rysirengback.bancobackend.entities.IndividualPersonEntity;
 import com.rysirengback.bancobackend.entities.LegalPersonEntity;
-import com.rysirengback.bancobackend.repositories.AccountRepository;
-import com.rysirengback.bancobackend.repositories.AgencyRepository;
-import com.rysirengback.bancobackend.repositories.IndividualPersonRepository;
-import com.rysirengback.bancobackend.repositories.LegalPersonRepository;
+import com.rysirengback.bancobackend.repositories.*;
+import lombok.RequiredArgsConstructor;
 
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 
 import java.util.Random;
 
@@ -41,7 +36,14 @@ public class AccountService {
 	}
 	
 	@Transactional
-	public ReadAccountDTO LoginAccount(LoginAccountDTO request) {
+	public ReadAccountDTO loginAccount(LoginAccountDTO request) {
+		AccountEntity account = accountRepository.findByNumberAndPassword(request.getNumber(), request.getPassword());
+		
+		if(account.getIndividualPerson() != null ) {
+			System.out.println("Pessoa fisica");
+		} else {
+			System.out.println("Pessoa juridica");
+		}
 		
 		return new ReadAccountDTO();
 	}

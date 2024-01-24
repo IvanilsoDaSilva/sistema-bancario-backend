@@ -1,8 +1,7 @@
 package com.rysirengback.bancobackend.controllers;
 
-import com.rysirengback.bancobackend.dto.request.CreateIndividualPersonAccountDTO;
-import com.rysirengback.bancobackend.dto.request.CreateLegalPersonAccountDTO;
-import com.rysirengback.bancobackend.dto.response.ReadAccountDTO;
+import com.rysirengback.bancobackend.dto.request.*;
+import com.rysirengback.bancobackend.dto.response.*;
 import com.rysirengback.bancobackend.services.AccountService;
 
 import lombok.AllArgsConstructor;
@@ -18,6 +17,13 @@ public class AccountController {
 	@Autowired
 	private AccountService accountService;
 	
+	@PostMapping(value = "/login")
+	@ResponseStatus(HttpStatus.CREATED)
+	@CrossOrigin
+	public ReadAccountDTO loginAccount(@RequestBody LoginAccountDTO request) {
+		return accountService.loginAccount(request);
+	}
+
 	@PostMapping(value = "/individual-person/create")
 	@ResponseStatus(HttpStatus.CREATED)
 	@CrossOrigin
