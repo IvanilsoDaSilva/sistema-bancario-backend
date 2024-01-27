@@ -27,8 +27,8 @@ public class AccountController {
 	@PostMapping(value = "/deposit")
 	@ResponseStatus(HttpStatus.CREATED)
 	@CrossOrigin
-	public ReadAccountDTO despoit(@RequestBody LoginAccountDTO request) {
-		return accountService.deposit(request);
+	public void despoit(@RequestBody DepositDTO request) {
+		accountService.deposit(request);
 	}
 
 	@PostMapping(value = "/individual-person/create")

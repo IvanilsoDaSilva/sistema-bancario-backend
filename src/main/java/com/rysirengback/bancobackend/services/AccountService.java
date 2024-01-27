@@ -14,7 +14,9 @@ import java.util.Random;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @RequiredArgsConstructor(onConstructor = @__({@Autowired}))
 @Service
@@ -60,27 +62,18 @@ public class AccountService {
 	}
 	
 	@Transactional
-	public ReadAccountDTO deposit(LoginAccountDTO request) {
-		ReadAccountDTO response;
-		AccountEntity account = accountRepository.findByNumberAndPassword(request.getNumber(), request.getPassword());
-		
-		response = modelMapper.map(account, ReadAccountDTO.class);
-		
-		if(account.getIndividualPerson() != null ) {
-			IndividualPersonEntity person = modelMapper.map(individualPersonRepository.findById(response.getIndividualPersonId()), IndividualPersonEntity.class);
+	public void deposit(DepositDTO request) {
+		System.out.println(request.getId());
+		System.out.println(request.getBalance());
+		if (request.getBalance()>0) {
+			AccountEntity account = modelMapper.map(accountRepository.findById(request.getId()), AccountEntity.class);
 			
-			response.setName(person.getName());
-			response.setCpf(person.getCpf());
-			response.setRg(person.getRg());
-			response.setBirth(person.getBirth());
+			account.setBalance(account.getBalance()+request.getBalance());
+			
+			accountRepository.save(account);
 		} else {
-			LegalPersonEntity person = modelMapper.map(legalPersonRepository.findById(response.getLegalPersonId()), LegalPersonEntity.class);
-			
-			response.setCompanyName(person.getCompanyName());
-			response.setCnpj(person.getCnpj());
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		return response;
 	}
 	
 	@Transactional

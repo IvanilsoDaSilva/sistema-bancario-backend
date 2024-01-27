@@ -7,14 +7,14 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 @NoArgsConstructor
-public class LoginAccountDTO {
+public class DepositDTO {
 	private String id;
 //	private Date createdDate;
 //	private Date lastModifiedDate;
 	
-	private String number;
-	private String password;
-//	private double balance;
+//	private String number;
+//	private String password;
+	private double balance;
 //	private AccountTypeEnum accountType;
 //	private boolean locked;
 //	private LegalPersonEntity legalPerson;
