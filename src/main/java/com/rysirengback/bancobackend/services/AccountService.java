@@ -34,7 +34,7 @@ public class AccountService {
 		
 		accountNumber = number.toString();
 		
-		return accountNumber;
+		return accountNumber; 
 	}
 	
 	@Transactional
@@ -63,12 +63,24 @@ public class AccountService {
 	
 	@Transactional
 	public void deposit(DepositDTO request) {
-		System.out.println(request.getId());
-		System.out.println(request.getBalance());
 		if (request.getBalance()>0) {
 			AccountEntity account = modelMapper.map(accountRepository.findById(request.getId()), AccountEntity.class);
 			
 			account.setBalance(account.getBalance()+request.getBalance());
+			
+			accountRepository.save(account);
+		} else {
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@Transactional
+	public void withdraw(WithdrawDTO request) {
+		AccountEntity account = modelMapper.map(accountRepository.findById(request.getId()), AccountEntity.class);
+		
+		if (request.getBalance() <= account.getBalance() && request.getBalance()>0) {
+			
+			account.setBalance(account.getBalance()-request.getBalance());
 			
 			accountRepository.save(account);
 		} else {

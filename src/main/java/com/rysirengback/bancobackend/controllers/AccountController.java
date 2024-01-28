@@ -27,8 +27,15 @@ public class AccountController {
 	@PostMapping(value = "/deposit")
 	@ResponseStatus(HttpStatus.CREATED)
 	@CrossOrigin
-	public void despoit(@RequestBody DepositDTO request) {
+	public void deposit(@RequestBody DepositDTO request) {
 		accountService.deposit(request);
+	}
+	
+	@PostMapping(value = "/withdraw")
+	@ResponseStatus(HttpStatus.CREATED)
+	@CrossOrigin
+	public void withdraw(@RequestBody WithdrawDTO request) {
+		accountService.withdraw(request);
 	}
 
 	@PostMapping(value = "/individual-person/create")
