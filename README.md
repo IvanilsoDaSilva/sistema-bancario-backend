@@ -38,6 +38,9 @@ This project is intended to provide a solid foundation for anyone just starting 
 
   <!-- softwares -->
   ![Eclipse](https://img.shields.io/badge/Eclipse-FE7A16.svg?style=for-the-badge&logo=Eclipse&logoColor=FFFFFF&color=FF00FF)&nbsp;
+
+  <!-- Others -->
+  ![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=FFFFFF&color=FF00FF)&nbsp;
   
 </div>
 
