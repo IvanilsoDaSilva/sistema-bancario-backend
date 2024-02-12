@@ -12,7 +12,7 @@ public class WithdrawDTO {
 //	private Date createdDate;
 //	private Date lastModifiedDate;
 	
-//	private String number;
+	private String number;
 //	private String password;
 	private double balance;
 //	private AccountTypeEnum accountType;
