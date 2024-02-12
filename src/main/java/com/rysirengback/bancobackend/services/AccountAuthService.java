@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor(onConstructor = @__({@Autowired}))
 @Service
-public class AccountService {
+public class AccountAuthService {
 	private final static Random random = new Random();
 	
 	public static String generateAccountNumber() {

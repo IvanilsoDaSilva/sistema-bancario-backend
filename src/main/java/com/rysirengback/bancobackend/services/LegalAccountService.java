@@ -29,7 +29,7 @@ public class LegalAccountService {
 		
 		accountRequest.setLegalPerson(personRequest);
 		accountRequest.setAgency(agencyRepository.findByNumber(request.getAgencyCode()));
-		accountRequest.setNumber(request.getAgencyCode()+AccountService.generateAccountNumber());
+		accountRequest.setNumber(request.getAgencyCode()+AccountAuthService.generateAccountNumber());
 		
 		accountRequest = accountRepository.save(accountRequest);
 		
