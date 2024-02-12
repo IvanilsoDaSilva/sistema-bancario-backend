@@ -18,7 +18,7 @@ public class AccountController {
 	@Autowired
 	private AccountService accountService;
 	
-	@GetMapping(value = "/readAll")
+	@GetMapping(value = "/read-all")
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin
 	public List<ReadAccountDTO> readAllAccounts() {
