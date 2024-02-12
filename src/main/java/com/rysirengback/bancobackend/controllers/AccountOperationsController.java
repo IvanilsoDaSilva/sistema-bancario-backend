@@ -20,28 +20,28 @@ public class AccountOperationsController {
 	@PostMapping(value = "/login")
 	@ResponseStatus(HttpStatus.CREATED)
 	@CrossOrigin
-	public ReadAccountDTO login(@RequestBody LoginAccountDTO request) {
-		return accountOperationsService.login(request);
+	public ReadAccountDTO logInAccount(@RequestBody LoginAccountDTO request) {
+		return accountOperationsService.logInAccount(request);
 	}
 
 	@PostMapping(value = "/deposit")
 	@ResponseStatus(HttpStatus.CREATED)
 	@CrossOrigin
-	public void deposit(@RequestBody DepositDTO request) {
-		accountOperationsService.deposit(request);
+	public void depositInAccount(@RequestBody DepositDTO request) {
+		accountOperationsService.depositInAccount(request);
 	}
 	
 	@PostMapping(value = "/withdraw")
 	@ResponseStatus(HttpStatus.CREATED)
 	@CrossOrigin
-	public void withdraw(@RequestBody WithdrawDTO request) {
-		accountOperationsService.withdraw(request);
+	public void withdrawInAccount(@RequestBody WithdrawDTO request) {
+		accountOperationsService.withdrawInAccount(request);
 	}
 	
 	@PostMapping(value = "/transfer")
 	@ResponseStatus(HttpStatus.CREATED)
 	@CrossOrigin
-	public void transfer(@RequestBody WithdrawDTO request) {
-//		accountOperationsService.transfer(request);
+	public void transferInAccount(@RequestBody WithdrawDTO request) {
+//		accountOperationsService.transferInAccount(request);
 	}
 }

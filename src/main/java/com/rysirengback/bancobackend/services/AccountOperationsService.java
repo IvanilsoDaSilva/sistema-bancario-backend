@@ -25,7 +25,7 @@ public class AccountOperationsService {
 	private final ModelMapper modelMapper;
 	
 	@Transactional
-	public ReadAccountDTO login(LoginAccountDTO request) {
+	public ReadAccountDTO logInAccount(LoginAccountDTO request) {
 		ReadAccountDTO response;
 		AccountEntity account = accountRepository.findByNumberAndPassword(request.getNumber(), request.getPassword());
 		
@@ -49,7 +49,7 @@ public class AccountOperationsService {
 	}
 	
 	@Transactional
-	public void deposit(DepositDTO request) {
+	public void depositInAccount(DepositDTO request) {
 		if (request.getBalance()>0) {
 			AccountEntity account = modelMapper.map(accountRepository.findById(request.getId()), AccountEntity.class);
 			
@@ -62,7 +62,7 @@ public class AccountOperationsService {
 	}
 	
 	@Transactional
-	public void withdraw(WithdrawDTO request) {
+	public void withdrawInAccount(WithdrawDTO request) {
 		AccountEntity account = modelMapper.map(accountRepository.findById(request.getId()), AccountEntity.class);
 		
 		if (request.getBalance() <= account.getBalance() && request.getBalance()>0) {
