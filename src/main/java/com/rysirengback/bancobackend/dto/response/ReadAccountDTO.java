@@ -23,7 +23,7 @@ public class ReadAccountDTO {
 	private String cpf;
 	private String rg;
 	private Date birth;
-	private List<AccountEntity> accounts;
+//	private List<AccountEntity> accounts;
 	
 	private String companyName;
 	private String cnpj;
