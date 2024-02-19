@@ -1,5 +1,5 @@
-CREATE SCHEMA IF NOT EXISTS `sistema_bancario_backend_teste_simples` DEFAULT CHARACTER SET utf8mb4;
-USE `sistema_bancario_backend_teste_simples`;
+CREATE SCHEMA IF NOT EXISTS `sistema_bancario_backend_teste` DEFAULT CHARACTER SET utf8mb4;
+USE `sistema_bancario_backend_teste`;
 
 CREATE TABLE IF NOT EXISTS `individual_person` (
 	`id` VARCHAR(255) NOT NULL,
@@ -55,14 +55,14 @@ CREATE TABLE IF NOT EXISTS `legal_person` (
 
 CREATE TABLE IF NOT EXISTS `account` (
 	`id` VARCHAR(255) NOT NULL,
-	`account_type` TINYINT(4) NULL DEFAULT NULL,
+	`number` VARCHAR(255) NULL DEFAULT NULL,
+	`password` VARCHAR(255) NULL DEFAULT NULL,
 	`balance` DOUBLE NULL DEFAULT NULL,
+	`account_type` TINYINT(4) NULL DEFAULT NULL,
 	`locked` BIT(1) NULL DEFAULT NULL,
 	`agency_id` VARCHAR(255) NULL DEFAULT NULL,
 	`individual_person_id` VARCHAR(255) NULL DEFAULT NULL,
 	`legal_person_id` VARCHAR(255) NULL DEFAULT NULL,
-	`number` VARCHAR(255) NULL DEFAULT NULL,
-	`password` VARCHAR(255) NOT NULL,
     `created_date` DATE NULL DEFAULT NULL,
 	`last_modified_date` DATE NULL DEFAULT NULL,
     

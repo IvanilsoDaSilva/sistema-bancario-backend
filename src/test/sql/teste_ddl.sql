@@ -313,14 +313,14 @@ DEFAULT CHARACTER SET = utf8mb4;
 */
 CREATE TABLE IF NOT EXISTS `sistema_bancario_backend_teste`.`account` (
 	`id` VARCHAR(255) NOT NULL,
-	`account_type` TINYINT(4) NULL DEFAULT NULL,
+	`number` VARCHAR(255) NULL DEFAULT NULL,
+	`password` VARCHAR(255) NULL DEFAULT NULL,
 	`balance` DOUBLE NULL DEFAULT NULL,
+	`account_type` TINYINT(4) NULL DEFAULT NULL,
 	`locked` BIT(1) NULL DEFAULT NULL,
 	`agency_id` VARCHAR(255) NULL DEFAULT NULL,
 	`individual_person_id` VARCHAR(255) NULL DEFAULT NULL,
 	`legal_person_id` VARCHAR(255) NULL DEFAULT NULL,
-	`number` VARCHAR(255) NULL DEFAULT NULL,
-	`password` VARCHAR(255) NULL DEFAULT NULL,
     `created_date` DATE NULL DEFAULT NULL,
 	`last_modified_date` DATE NULL DEFAULT NULL,
     
@@ -452,8 +452,8 @@ DEFAULT CHARACTER SET = utf8mb4;
 */
 CREATE TABLE IF NOT EXISTS `sistema_bancario_backend_teste`.`operation` (
 	`id` VARCHAR(255) NOT NULL,
-	`operation_type` TINYINT(4) NULL DEFAULT NULL,
 	`balance` DOUBLE NULL DEFAULT NULL,
+	`operation_type` TINYINT(4) NULL DEFAULT NULL,
     `description` VARCHAR(255) NULL DEFAULT NULL,
     `account_id` VARCHAR(255) NULL DEFAULT NULL,
     `account_id_receiver` VARCHAR(255) NULL DEFAULT NULL,
@@ -461,14 +461,14 @@ CREATE TABLE IF NOT EXISTS `sistema_bancario_backend_teste`.`operation` (
 	`last_modified_date` DATE NULL DEFAULT NULL,
 
 	PRIMARY KEY (`id`),
-	CONSTRAINT `FKiqovy1gm2lfbgffr5g2kdffss`
+	CONSTRAINT `FKiqavy1gm2lfbgffffg2kdffss`
 		FOREIGN KEY (`account_id`)
 		REFERENCES `sistema_bancario_backend_teste`.`account` (`id`),
-	CONSTRAINT `FKKqovy0gm1lebgwor5g2kkffuu`
+	CONSTRAINT `FKKqovy0gm1lebgworff2kkffuu`
 		FOREIGN KEY (`account_id_receiver`)
 		REFERENCES `sistema_bancario_backend_teste`.`account` (`id`),
-	INDEX `FK505amab54cr4d3cyc7741l4ss` (`account_id` ASC),
-	INDEX `FFgf1exhes0mhq1np5lms15iyuu` (`account_id_receiver` ASC)
+	INDEX `FK505amab54cr4d3cyc77ffl4ss` (`account_id` ASC),
+	INDEX `FFgf1exhesfffq1np5lms15iyuu` (`account_id_receiver` ASC)
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
