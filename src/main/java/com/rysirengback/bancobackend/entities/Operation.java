@@ -1,17 +1,14 @@
 package com.rysirengback.bancobackend.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.rysirengback.bancobackend.enums.*;
+
+import jakarta.persistence.*;
 
 import java.io.Serial;
+import java.io.Serializable;
 import java.sql.Date;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,8 +20,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 @SuperBuilder
 @NoArgsConstructor
 @Entity
-@Table(name="individual_person")
-public class IndividualPersonEntity extends Client {
+@Table(name="operation")
+public class Operation implements Serializable {
 	@Serial
     private static final long serialVersionUID = 1L;
 	
@@ -40,15 +37,20 @@ public class IndividualPersonEntity extends Client {
     @UpdateTimestamp(source = SourceType.DB)
     private Date lastModifiedDate;
     
-    @Column(name = "name")
-	private String name;
+    @Column(name = "operation_type")
+	private AccountTypeEnum operationType;
+    
+    @Column(name = "balance")
+	private double balance;
+    
+    @Column(name = "description")
+	private String description;
 	
-    @Column(name = "cpf", unique=true)
-	private String cpf;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "account_id", referencedColumnName = "id")
+	private AccountEntity account;
 	
-    @Column(name = "rg")
-	private String rg;
-	
-    @Column(name = "birth")
-	private Date birth;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "account_id_receiver", referencedColumnName = "id")
+	private AccountEntity accountReceiver;
 }

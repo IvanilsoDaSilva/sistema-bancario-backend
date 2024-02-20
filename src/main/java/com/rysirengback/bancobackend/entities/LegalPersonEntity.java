@@ -40,9 +40,9 @@ public class LegalPersonEntity extends Client {
     @UpdateTimestamp(source = SourceType.DB)
     private Date lastModifiedDate;
 	
-    @Column(name = "company_name", nullable = false)
+    @Column(name = "company_name")
 	private String companyName;
 	
-	@Column(name = "cnpj", unique=true, nullable = false)
+	@Column(name = "cnpj", unique=true)
 	private String cnpj;
 }

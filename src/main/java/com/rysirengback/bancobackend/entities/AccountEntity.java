@@ -37,16 +37,16 @@ public class AccountEntity implements Serializable {
     @UpdateTimestamp(source = SourceType.DB)
     private Date lastModifiedDate;
 	
-    @Column(name = "number")
+    @Column(name = "number", unique=true)
 	private String number;
   
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
 	private String password;
     
     @Column(name = "balance")
 	private double balance;
     
-    @Column(name = "accountType")
+    @Column(name = "account_type")
 	private AccountTypeEnum accountType;
 	
 	@Column(name = "locked")

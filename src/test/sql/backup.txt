@@ -1,0 +1,25 @@
+<<comment
+Planejamento
+	Frequência:
+		Serão realizados backups diários do banco de dados para garantir que os dados mais recentes sejam protegidos.
+	Tipo:
+		Serão realizados backups completos do banco de dados diariamente para garantir que todos os dados estejam incluídos no backup.
+	Armazenamento:
+		Os backups serão armazenados em um diretório seguro no sistema de arquivos do servidor de banco de dados. Além disso, cópias dos backups serão enviadas regularmente para um local externo seguro, como um serviço de armazenamento em nuvem.
+		Retenção de Dados: Serão mantidos os backups diários por uma semana. Após uma semana, os backups mais antigos serão excluídos para liberar espaço de armazenamento.
+coment
+
+USUARIO="root"
+SENHA=""
+BANCO_DE_DADOS="sistema_bancario_backend_teste"
+
+DATA=$(date +"%Y%m%d")
+DIRETORIO_BACKUP="C:\backups\&BANCO_DE_DADOS\"
+NOME_ARQUIVO="backup_bd_$DATA.sql"
+
+mysqldump -u$USUARIO -p$SENHA $BANCO_DE_DADOS > $DIRETORIO_BACKUP/$NOME_ARQUIVO
+
+rclone copy $DIRETORIO_BACKUP/$NOME_ARQUIVO remote:backup/
+
+# Excluir backups mais antigos do que uma semana
+find $DIRETORIO_BACKUP/* -mtime +7 -exec rm {} \;
