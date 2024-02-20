@@ -14,6 +14,17 @@ CREATE TABLE IF NOT EXISTS `individual_person` (
 	UNIQUE INDEX (`cpf` ASC)
 );
 
+CREATE TABLE IF NOT EXISTS `legal_person` (
+	`id` VARCHAR(255) NOT NULL,
+	`cnpj` VARCHAR(255) NOT NULL,
+	`company_name` VARCHAR(255) NOT NULL,
+	`created_date` DATE NULL DEFAULT NULL,
+	`last_modified_date` DATE NULL DEFAULT NULL,
+    
+	PRIMARY KEY (`id`),
+	UNIQUE INDEX (`cnpj` ASC)
+);
+
 CREATE TABLE IF NOT EXISTS `address` (
 	`id` VARCHAR(255) NOT NULL,
 	`city` VARCHAR(255) NULL DEFAULT NULL,
@@ -42,17 +53,6 @@ CREATE TABLE IF NOT EXISTS `agency` (
 	UNIQUE INDEX (`address_id` ASC)
 );
 
-CREATE TABLE IF NOT EXISTS `legal_person` (
-	`id` VARCHAR(255) NOT NULL,
-	`cnpj` VARCHAR(255) NOT NULL,
-	`company_name` VARCHAR(255) NOT NULL,
-	`created_date` DATE NULL DEFAULT NULL,
-	`last_modified_date` DATE NULL DEFAULT NULL,
-    
-	PRIMARY KEY (`id`),
-	UNIQUE INDEX (`cnpj` ASC)
-);
-
 CREATE TABLE IF NOT EXISTS `account` (
 	`id` VARCHAR(255) NOT NULL,
 	`number` VARCHAR(255) NULL DEFAULT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `account` (
 	FOREIGN KEY (`individual_person_id`) REFERENCES `individual_person` (`id`),
 	FOREIGN KEY (`agency_id`) REFERENCES `agency` (`id`),
 	FOREIGN KEY (`legal_person_id`) REFERENCES `legal_person` (`id`),
-	UNIQUE (`number`),
+	UNIQUE INDEX (`number` ASC),
 	INDEX (`agency_id` ASC),
 	INDEX (`individual_person_id` ASC),
 	INDEX (`legal_person_id` ASC)
@@ -87,8 +87,8 @@ CREATE TABLE IF NOT EXISTS `log` (
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
 	FOREIGN KEY (`address_id`) REFERENCES `address` (`id`),
-	INDEX `FK503ama154cr4d3cyc7741l4b7` (`account_id` ASC),
-	INDEX `FKgfiexhes0mhq1np5lms15iyts` (`address_id` ASC)
+	INDEX (`account_id` ASC),
+	INDEX (`address_id` ASC)
 );
 
 CREATE TABLE IF NOT EXISTS `operation` (
@@ -104,6 +104,6 @@ CREATE TABLE IF NOT EXISTS `operation` (
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
 	FOREIGN KEY (`account_id_receiver`) REFERENCES `account` (`id`),
-	INDEX `FK505amab54cr4d3cyc7741l4uu` (`account_id` ASC),
-	INDEX `FFgf1exhes0mhq1np5lms15iyss` (`account_id_receiver` ASC)
+	INDEX (`account_id` ASC),
+	INDEX (`account_id_receiver` ASC)
 );

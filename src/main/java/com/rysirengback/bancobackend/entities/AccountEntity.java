@@ -37,7 +37,7 @@ public class AccountEntity implements Serializable {
     @UpdateTimestamp(source = SourceType.DB)
     private Date lastModifiedDate;
 	
-    @Column(name = "number")
+    @Column(name = "number", unique=true)
 	private String number;
   
     @Column(name = "password")

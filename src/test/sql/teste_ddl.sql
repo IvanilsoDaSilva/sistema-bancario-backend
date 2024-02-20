@@ -45,6 +45,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
     O utf8mb4 permite um byte a mais na codificação.
     
 */
+DROP SCHEMA IF EXISTS `sistema_bancario_backend_teste`;
 CREATE SCHEMA IF NOT EXISTS `sistema_bancario_backend_teste` DEFAULT CHARACTER SET utf8mb4;
 USE `sistema_bancario_backend_teste`;
 
@@ -99,6 +100,58 @@ CREATE TABLE IF NOT EXISTS `sistema_bancario_backend_teste`.`individual_person` 
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX `UK_idljlcm9jq4s0ce07sh6yey0j` (`cpf` ASC)
 ) -- VISIBLE) 
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `sistema_bancario_backend_teste`.`legal_person`
+-- -----------------------------------------------------
+/*
+	
+	Esse conjunto de comandos SQL está lidando com a criação da tabela legal_person.
+    
+    NULL DEFAULT NULL:
+    
+    Define que o campo pode receber valores NULL e caso não informado, armazenará NULL por padrão.
+    
+	UNIQUE
+    
+    Define que o campo será unico.
+    
+    INDEX `{chave}` (`{campo}` ASC):
+	
+	INDEX define que o campo será indexado.
+	{chave} é o nome dado ao índice único (Opcionais, mas podem ser úteis para identificar e referenciar o índice posteriormente, especialmente em operações de gerenciamento de banco de dados).
+	{campo} especifica a coluna que será indexada.
+	ASC define que o indice será criado em ordem crescente.
+    
+    VISIBLE: 
+    
+    Removido devido a problemas de compatibilidade de versão do MySQL.
+    Pode ser considerada opcional e, em muitos casos, é simplesmente ignorada.
+    Seu uso pode ser útil apenas para tornar o código mais claro para outros desenvolvedores e para garantir compatibilidade com futuras atualizações do MySQL.
+    
+    ENGINE = InnoDB:
+    
+    Especificando que a tabela será armazenada utilizando o mecanismo InnoDB. Isso garante que a tabela terá suporte a transações, chaves estrangeiras e outras funcionalidades avançadas fornecidas pelo InnoDB.
+    
+	DEFAULT CHARACTER SET utf8mb4:
+    
+    Define o conjunto de caracteres padrão para uma tabela no MySQL. Neste caso, o utf8mb4, uma extensão do conjunto de caracteres UTF-8.
+    O utf8mb4 permite um byte a mais na codificação.
+    
+*/
+CREATE TABLE IF NOT EXISTS `sistema_bancario_backend_teste`.`legal_person` (
+	`id` VARCHAR(255) NOT NULL,
+	`cnpj` VARCHAR(255) NULL DEFAULT NULL,
+	`company_name` VARCHAR(255) NULL DEFAULT NULL,
+	`created_date` DATE NULL DEFAULT NULL,
+	`last_modified_date` DATE NULL DEFAULT NULL,
+    
+	PRIMARY KEY (`id`),
+	UNIQUE INDEX `UK_q1akyn8ain430o9pft20nacrf` (`cnpj` ASC)
+) -- VISIBLE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
@@ -214,58 +267,6 @@ DEFAULT CHARACTER SET = utf8mb4;
 
 
 -- -----------------------------------------------------
--- Table `sistema_bancario_backend_teste`.`legal_person`
--- -----------------------------------------------------
-/*
-	
-	Esse conjunto de comandos SQL está lidando com a criação da tabela legal_person.
-    
-    NULL DEFAULT NULL:
-    
-    Define que o campo pode receber valores NULL e caso não informado, armazenará NULL por padrão.
-    
-	UNIQUE
-    
-    Define que o campo será unico.
-    
-    INDEX `{chave}` (`{campo}` ASC):
-	
-	INDEX define que o campo será indexado.
-	{chave} é o nome dado ao índice único (Opcionais, mas podem ser úteis para identificar e referenciar o índice posteriormente, especialmente em operações de gerenciamento de banco de dados).
-	{campo} especifica a coluna que será indexada.
-	ASC define que o indice será criado em ordem crescente.
-    
-    VISIBLE: 
-    
-    Removido devido a problemas de compatibilidade de versão do MySQL.
-    Pode ser considerada opcional e, em muitos casos, é simplesmente ignorada.
-    Seu uso pode ser útil apenas para tornar o código mais claro para outros desenvolvedores e para garantir compatibilidade com futuras atualizações do MySQL.
-    
-    ENGINE = InnoDB:
-    
-    Especificando que a tabela será armazenada utilizando o mecanismo InnoDB. Isso garante que a tabela terá suporte a transações, chaves estrangeiras e outras funcionalidades avançadas fornecidas pelo InnoDB.
-    
-	DEFAULT CHARACTER SET utf8mb4:
-    
-    Define o conjunto de caracteres padrão para uma tabela no MySQL. Neste caso, o utf8mb4, uma extensão do conjunto de caracteres UTF-8.
-    O utf8mb4 permite um byte a mais na codificação.
-    
-*/
-CREATE TABLE IF NOT EXISTS `sistema_bancario_backend_teste`.`legal_person` (
-	`id` VARCHAR(255) NOT NULL,
-	`cnpj` VARCHAR(255) NULL DEFAULT NULL,
-	`company_name` VARCHAR(255) NULL DEFAULT NULL,
-	`created_date` DATE NULL DEFAULT NULL,
-	`last_modified_date` DATE NULL DEFAULT NULL,
-    
-	PRIMARY KEY (`id`),
-	UNIQUE INDEX `UK_q1akyn8ain430o9pft20nacrf` (`cnpj` ASC)
-) -- VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
 -- Table `sistema_bancario_backend_teste`.`account`
 -- -----------------------------------------------------
 /*
@@ -334,7 +335,7 @@ CREATE TABLE IF NOT EXISTS `sistema_bancario_backend_teste`.`account` (
 	CONSTRAINT `FKecs860waipliu6fddiqbqq30v`
 		FOREIGN KEY (`legal_person_id`)
 		REFERENCES `sistema_bancario_backend_teste`.`legal_person` (`id`),
-	UNIQUE (`number`),
+	UNIQUE INDEX `FK7u8hrmb7h1qyu17ppeu1em5ab` (`number` ASC),
 	INDEX `FK7u8hrmb7h1qyu17ppeu1em5o2` (`agency_id` ASC), -- VISIBLE,
 	INDEX `FK6h135jstrjuphvowfq4ms8cb9` (`individual_person_id` ASC), -- VISIBLE,
 	INDEX `FKecs860waipliu6fddiqbqq30v` (`legal_person_id` ASC) -- VISIBLE
@@ -461,14 +462,14 @@ CREATE TABLE IF NOT EXISTS `sistema_bancario_backend_teste`.`operation` (
 	`last_modified_date` DATE NULL DEFAULT NULL,
 
 	PRIMARY KEY (`id`),
-	CONSTRAINT `FKiqavy1gm2lfbgffffg2kdffss`
+	CONSTRAINT `FKiqavy1gm2lfaaafffg2kdffss`
 		FOREIGN KEY (`account_id`)
 		REFERENCES `sistema_bancario_backend_teste`.`account` (`id`),
-	CONSTRAINT `FKKqovy0gm1lebgworff2kkffuu`
+	CONSTRAINT `FKKqovy0gm1lebgwaaff2kkffuu`
 		FOREIGN KEY (`account_id_receiver`)
 		REFERENCES `sistema_bancario_backend_teste`.`account` (`id`),
-	INDEX `FK505amab54cr4d3cyc77ffl4ss` (`account_id` ASC),
-	INDEX `FFgf1exhesfffq1np5lms15iyuu` (`account_id_receiver` ASC)
+	INDEX `FK505amab54cr4d3cyaa7ffl4ss` (`account_id` ASC),
+	INDEX `FFgf1exhesfffq1np5lmaa5iyuu` (`account_id_receiver` ASC)
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
