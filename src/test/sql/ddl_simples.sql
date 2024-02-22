@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `agency` (
 	`last_modified_date` DATE NULL DEFAULT NULL,
 
 	PRIMARY KEY (`id`),
-	FOREIGN KEY (`address_id`) REFERENCES `address` (`id`),
+	FOREIGN KEY (`address_id`) REFERENCES `address` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
 	UNIQUE INDEX (`address_id` ASC)
 );
 
@@ -67,9 +67,9 @@ CREATE TABLE IF NOT EXISTS `account` (
 	`last_modified_date` DATE NULL DEFAULT NULL,
     
 	PRIMARY KEY (`id`),
-	FOREIGN KEY (`individual_person_id`) REFERENCES `individual_person` (`id`),
-	FOREIGN KEY (`agency_id`) REFERENCES `agency` (`id`),
-	FOREIGN KEY (`legal_person_id`) REFERENCES `legal_person` (`id`),
+	FOREIGN KEY (`individual_person_id`) REFERENCES `individual_person` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY (`agency_id`) REFERENCES `agency` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY (`legal_person_id`) REFERENCES `legal_person` (`id`) ,
 	UNIQUE INDEX (`number` ASC),
 	INDEX (`agency_id` ASC),
 	INDEX (`individual_person_id` ASC),
@@ -85,8 +85,8 @@ CREATE TABLE IF NOT EXISTS `log` (
 	`last_modified_date` DATE NULL DEFAULT NULL,
 
 	PRIMARY KEY (`id`),
-	FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
-	FOREIGN KEY (`address_id`) REFERENCES `address` (`id`),
+	FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY (`address_id`) REFERENCES `address` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
 	INDEX (`account_id` ASC),
 	INDEX (`address_id` ASC)
 );
@@ -102,8 +102,8 @@ CREATE TABLE IF NOT EXISTS `operation` (
 	`last_modified_date` DATE NULL DEFAULT NULL,
 
 	PRIMARY KEY (`id`),
-	FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
-	FOREIGN KEY (`account_id_receiver`) REFERENCES `account` (`id`),
+	FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY (`account_id_receiver`) REFERENCES `account` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
 	INDEX (`account_id` ASC),
 	INDEX (`account_id_receiver` ASC)
 );

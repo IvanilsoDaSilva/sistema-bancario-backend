@@ -258,7 +258,10 @@ CREATE TABLE IF NOT EXISTS `sistema_bancario_backend_teste`.`agency` (
 	PRIMARY KEY (`id`),
 	CONSTRAINT `FKiqovy0gm1lebgwor5g2kdfcmk`
 		FOREIGN KEY (`address_id`)
-		REFERENCES `sistema_bancario_backend_teste`.`address` (`id`),
+		REFERENCES `sistema_bancario_backend_teste`.`address` (`id`)
+	ON DELETE SET NULL
+	ON UPDATE CASCADE
+	,
 	UNIQUE INDEX `UK_7vmqa8p2jsvct6baec7sjsiqy` (`address_id` ASC) -- VISIBLE
 
 )
@@ -328,13 +331,19 @@ CREATE TABLE IF NOT EXISTS `sistema_bancario_backend_teste`.`account` (
 	PRIMARY KEY (`id`),
 	CONSTRAINT `FK6h135jstrjuphvowfq4ms8cb9`
 		FOREIGN KEY (`individual_person_id`)
-		REFERENCES `sistema_bancario_backend_teste`.`individual_person` (`id`),
+		REFERENCES `sistema_bancario_backend_teste`.`individual_person` (`id`)
+	ON DELETE SET NULL
+	ON UPDATE CASCADE,
 	CONSTRAINT `FK7u8hrmb7h1qyu17ppeu1em5o2`
 		FOREIGN KEY (`agency_id`)
-		REFERENCES `sistema_bancario_backend_teste`.`agency` (`id`),
+		REFERENCES `sistema_bancario_backend_teste`.`agency` (`id`)
+	ON DELETE SET NULL
+	ON UPDATE CASCADE,
 	CONSTRAINT `FKecs860waipliu6fddiqbqq30v`
 		FOREIGN KEY (`legal_person_id`)
-		REFERENCES `sistema_bancario_backend_teste`.`legal_person` (`id`),
+		REFERENCES `sistema_bancario_backend_teste`.`legal_person` (`id`)
+	ON DELETE SET NULL
+	ON UPDATE CASCADE,
 	UNIQUE INDEX `FK7u8hrmb7h1qyu17ppeu1em5ab` (`number` ASC),
 	INDEX `FK7u8hrmb7h1qyu17ppeu1em5o2` (`agency_id` ASC), -- VISIBLE,
 	INDEX `FK6h135jstrjuphvowfq4ms8cb9` (`individual_person_id` ASC), -- VISIBLE,
@@ -397,10 +406,14 @@ CREATE TABLE IF NOT EXISTS `sistema_bancario_backend_teste`.`log` (
 	PRIMARY KEY (`id`),
 	CONSTRAINT `FKiqovy1gm2lfbgwor5g2kdff1k`
 		FOREIGN KEY (`account_id`)
-		REFERENCES `sistema_bancario_backend_teste`.`account` (`id`),
+		REFERENCES `sistema_bancario_backend_teste`.`account` (`id`)
+	ON DELETE SET NULL
+	ON UPDATE CASCADE,
 	CONSTRAINT `FKiqovy0gm1lebgwor5g2kdff1k`
 		FOREIGN KEY (`address_id`)
-		REFERENCES `sistema_bancario_backend_teste`.`address` (`id`),
+		REFERENCES `sistema_bancario_backend_teste`.`address` (`id`)
+	ON DELETE SET NULL
+	ON UPDATE CASCADE,
 	INDEX `FK503ama154cr4d3cyc7741l4b7` (`account_id` ASC),
 	INDEX `FKgfiexhes0mhq1np5lms15iyts` (`address_id` ASC)
 
@@ -464,10 +477,14 @@ CREATE TABLE IF NOT EXISTS `sistema_bancario_backend_teste`.`operation` (
 	PRIMARY KEY (`id`),
 	CONSTRAINT `FKiqavy1gm2lfaaafffg2kdffss`
 		FOREIGN KEY (`account_id`)
-		REFERENCES `sistema_bancario_backend_teste`.`account` (`id`),
+		REFERENCES `sistema_bancario_backend_teste`.`account` (`id`)
+	ON DELETE SET NULL
+	ON UPDATE CASCADE,
 	CONSTRAINT `FKKqovy0gm1lebgwaaff2kkffuu`
 		FOREIGN KEY (`account_id_receiver`)
-		REFERENCES `sistema_bancario_backend_teste`.`account` (`id`),
+		REFERENCES `sistema_bancario_backend_teste`.`account` (`id`)
+	ON DELETE SET NULL
+	ON UPDATE CASCADE,
 	INDEX `FK505amab54cr4d3cyaa7ffl4ss` (`account_id` ASC),
 	INDEX `FFgf1exhesfffq1np5lmaa5iyuu` (`account_id_receiver` ASC)
 )
