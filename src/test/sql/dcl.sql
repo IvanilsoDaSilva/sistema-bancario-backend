@@ -4,7 +4,7 @@
 -- -----------------------------------------------------
 -- Schema MYSQL
 -- -----------------------------------------------------
-USE MYSQL;
+USE mysql;
 
 
 -- -----------------------------------------------------
@@ -13,7 +13,7 @@ USE MYSQL;
 -- Inserindo o usuário administrador.
 -- O usuário administrador terá todas permissões no schema.
 -- -----------------------------------------------------
-CREATE USER 'SB_administrador'@'localhost' IDENTIFIED BY '123';
+CREATE user 'SB_administrador'@'localhost' IDENTIFIED BY '123';
 GRANT
 	ALL
 	ON `sistema_bancario_backend_teste`.*
@@ -27,7 +27,7 @@ SHOW GRANTS FOR 'SB_administrador'@'localhost';
 -- Inserindo o usuário gerente de nivel alto.
 -- O usuário gerente terá todas permissões no schema.
 -- -----------------------------------------------------
-CREATE USER 'SB_gerente_alto'@'localhost' IDENTIFIED BY '123';
+CREATE user 'SB_gerente_alto'@'localhost' IDENTIFIED BY '123';
 GRANT 
 	SELECT
     ON `sistema_bancario_backend_teste`.`operation` 
@@ -49,7 +49,7 @@ SHOW GRANTS FOR 'SB_gerente_alto'@'localhost';
 -- Inserindo o usuário gerente de nivel baixo.
 -- O usuário gerente terá todas permissões no schema.
 -- -----------------------------------------------------
-CREATE USER 'SB_gerente_baixo'@'localhost' IDENTIFIED BY '123';
+CREATE user 'SB_gerente_baixo'@'localhost' IDENTIFIED BY '123';
 GRANT
 	SELECT(number,account_type,locked,agency_id,individual_person_id,legal_person_id)
     ON `sistema_bancario_backend_teste`.`account`
@@ -58,7 +58,7 @@ SHOW GRANTS FOR 'SB_gerente_baixo'@'localhost';
 
 
 
-SELECT * FROM MYSQL.USER;
--- DROP USER SB_administrador@localhost;
--- DROP USER SB_gerente_alto@localhost;
--- DROP USER SB_gerente_baixo@localhost;
+SELECT * FROM mysql.user;
+-- DROP user SB_administrador@localhost;
+-- DROP user SB_gerente_alto@localhost;
+-- DROP user SB_gerente_baixo@localhost;
