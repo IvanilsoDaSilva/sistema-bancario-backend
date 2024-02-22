@@ -15,7 +15,7 @@ INSERT INTO `sistema_bancario_backend_teste`.`address` (
     ('011', '2020-03-03', '2020-03-04', 'BRASIL', 'BA', 'SALVADOR', 'BARRA', 'AVENIDA OCEÂNICA', '400', '40140-090', 'PRÓXIMO AO FAROL'),
     ('100', '2020-03-03', '2020-03-04', 'BRASIL', 'RJ', 'CAMPOS DOS GOYTACAZES', 'TOCOS', 'RUA GUILHERME MORISSON', '60', '28148-000', 'PROXIMO AO BAR DO DURVAL')
 ;
-SELECT * FROM `sistema_bancario_backend_teste`.`address`;
+-- SELECT * FROM `sistema_bancario_backend_teste`.`address`;
 
 
 -- -----------------------------------------------------
@@ -31,7 +31,7 @@ INSERT INTO `sistema_bancario_backend_teste`.`agency` (
     ('001', '2020-04-28', '2020-04-28', '001', '011'),
     ('010', '2020-12-06', '2020-12-06', '010', '222')
 ;
-SELECT * FROM `sistema_bancario_backend_teste`.`agency`;
+-- SELECT * FROM `sistema_bancario_backend_teste`.`agency`;
 
 
 -- -----------------------------------------------------
@@ -46,7 +46,7 @@ INSERT INTO `sistema_bancario_backend_teste`.`individual_person` (
     ('001', '2020-04-28', '2020-04-28', 'NARUTO UZUMAKI', '001.344.566-00', '863.000.321-7', '2002-10-10'),
     ('010', '2020-12-06', '2020-12-06', 'MONKEY D. LUFFY', '332.642.444-12', '21.332.343-1', '2006-05-05')
 ;
-SELECT * FROM `sistema_bancario_backend_teste`.`individual_person`;
+-- SELECT * FROM `sistema_bancario_backend_teste`.`individual_person`;
 
 
 -- -----------------------------------------------------
@@ -60,7 +60,7 @@ INSERT INTO `sistema_bancario_backend_teste`.`legal_person` (
 	('000', '2020-01-01', '2020-01-01', 'G9 SOLUCOES INTEGRADAS EM MSN LTDA.', '12.345.678/0001-00'),
     ('001', '2020-04-28', '2020-04-28', 'LIDER MEGA ENSINO LTDA.', '12.765.678/0003-00')
 ;
-SELECT * FROM `sistema_bancario_backend_teste`.`legal_person`;
+-- SELECT * FROM `sistema_bancario_backend_teste`.`legal_person`;
 
 
 -- -----------------------------------------------------
@@ -80,7 +80,7 @@ INSERT INTO `sistema_bancario_backend_teste`.`account` (
 	('011', '2020-04-28', '2020-04-28', '235542353', 'Senh@321', 3550.00, 2,0,'010',NULL,'001'),
     ('100', '2020-12-06', '2020-12-06', '455745453', 'P@ass333', 3000000000.00,0,0,'010','010',NULL)
 ;
-SELECT * FROM `sistema_bancario_backend_teste`.`account`;
+-- SELECT * FROM `sistema_bancario_backend_teste`.`account`;
 
 
 -- -----------------------------------------------------
@@ -97,7 +97,7 @@ INSERT INTO `sistema_bancario_backend_teste`.`log` (
     ('001', '2023-04-28', '2023-04-28', '192.164.000.2', '001', '011'),
 	('010', '2023-04-28', '2023-04-28', '192.168.212.3', '100', '100')
 ;
-SELECT * FROM `sistema_bancario_backend_teste`.`log`;
+-- SELECT * FROM `sistema_bancario_backend_teste`.`log`;
 
 
 -- -----------------------------------------------------
@@ -114,7 +114,7 @@ INSERT INTO `sistema_bancario_backend_teste`.`operation` (
     ('001', '2023-02-02', '2023-02-02', 3000.00, 1, 'Depósito do salário','000',NULL),
     ('010', '2024-01-01', '2024-01-01', 50.00, 2, 'Pagar Goku','100','000')
 ;
-SELECT * FROM `sistema_bancario_backend_teste`.`operation`;
+-- SELECT * FROM `sistema_bancario_backend_teste`.`operation`;
 
 
 -- -----------------------------------------------------
@@ -134,8 +134,8 @@ WHERE balance > 2000.00;
 -- Deve retornar o nome do cliente, documento do cliente, número das contas, saldo das contas, tipos das contas (utilizando case when atraves da numeração do tipo), numero da agência e rua da agência
 -- Nesse caso fiz um teste de como funcionam as tabelas temporárias!
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS TEMP_pessoafisica_contas_endereco_agencia;
-CREATE TEMPORARY TABLE TEMP_pessoafisica_contas_endereco_agencia AS SELECT relatorio.* FROM (
+DROP VIEW IF EXISTS `sistema_bancario_backend_teste`.`view_pessoafisica_conta_endereco_agencia`;
+CREATE VIEW `sistema_bancario_backend_teste`.`view_pessoafisica_conta_endereco_agencia` AS SELECT relatorio.* FROM (
 	SELECT 
 		-- Informações da pessoa física
 		ip.name `nome cliente`, ip.cpf `documento cliente`,
@@ -157,8 +157,8 @@ CREATE TEMPORARY TABLE TEMP_pessoafisica_contas_endereco_agencia AS SELECT relat
 		LEFT JOIN account ac ON ip.id = ac.individual_person_id
 		LEFT JOIN agency ag ON ag.id = ac.agency_id
 		LEFT JOIN address ad ON ag.address_id = ad.id
-) relatorio;
-SELECT * FROM TEMP_pessoafisica_contas_endereco_agencia;
+) AS relatorio;
+SELECT * FROM `sistema_bancario_backend_teste`.`view_pessoafisica_conta_endereco_agencia`;
             
             
 -- -----------------------------------------------------
@@ -167,8 +167,8 @@ SELECT * FROM TEMP_pessoafisica_contas_endereco_agencia;
 -- Deve retornar o nome do cliente, documento do cliente, numero das contas, saldo das contas, tipos das contas (utilizando case when atraves da numeração do tipo), numero da agência e rua da agência
 -- Nesse caso fiz um teste de como funcionam as tabelas temporarias!
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS TEMP_pessoajuridica_contas_endereco_agencia;
-CREATE TEMPORARY TABLE TEMP_pessoajuridica_contas_endereco_agencia AS SELECT relatorio.* FROM (
+DROP VIEW IF EXISTS `sistema_bancario_backend_teste`.`view_pessoajuridica_conta_endereco_agencia`;
+CREATE VIEW `sistema_bancario_backend_teste`.`view_pessoajuridica_conta_endereco_agencia` AS SELECT relatorio.* FROM (
 	SELECT 
 		-- Informações da pessoa jurídica
 		lp.company_name `nome cliente`, lp.cnpj `documento cliente`,
@@ -190,8 +190,8 @@ CREATE TEMPORARY TABLE TEMP_pessoajuridica_contas_endereco_agencia AS SELECT rel
 		LEFT JOIN account ac ON lp.id = ac.legal_person_id
 		LEFT JOIN agency ag ON ag.id = ac.agency_id
 		LEFT JOIN address ad ON ag.address_id = ad.id
-) relatorio;
-SELECT * FROM TEMP_pessoajuridica_contas_endereco_agencia;
+) AS relatorio;
+SELECT * FROM `sistema_bancario_backend_teste`.`view_pessoajuridica_conta_endereco_agencia`;
 
 
 -- -----------------------------------------------------
@@ -199,42 +199,50 @@ SELECT * FROM TEMP_pessoajuridica_contas_endereco_agencia;
 --
 -- Deve retornar o histórico de logins das contas com número da conta, ip, data de login e endereço
 -- -----------------------------------------------------
-SELECT 
-	-- Informações da conta
-	ac.number `numero conta`,
-	-- Informações de login
-	lo.ip `ip login`,
-	lo.created_date `data login`,
-	-- Informações de endereço do login
-	ad.country `pais login`,
-	ad.city `cidade login`,
-	ad.district `distrito login`
-FROM account ac
-	INNER JOIN log lo ON ac.id = lo.account_id
-	LEFT JOIN address ad ON ad.id = lo.address_id;
-        
+DROP VIEW IF EXISTS `sistema_bancario_backend_teste`.`view_log_conta`;
+CREATE VIEW `sistema_bancario_backend_teste`.`view_log_conta` AS SELECT relatorio.* FROM (
+	SELECT 
+		-- Informações da conta
+		ac.number `numero conta`,
+		-- Informações de login
+		lo.ip `ip login`,
+		lo.created_date `data login`,
+		-- Informações de endereço do login
+		ad.country `pais login`,
+		ad.city `cidade login`,
+		ad.district `distrito login`
+	FROM account ac
+		INNER JOIN log lo ON ac.id = lo.account_id
+		LEFT JOIN address ad ON ad.id = lo.address_id
+) AS relatorio;
+SELECT * FROM `sistema_bancario_backend_teste`.`view_log_conta`;
+
         
 -- -----------------------------------------------------
 -- Relatório de dados de contas x operações
 --
 -- Deve retornar o histórico de operações das contas com número da conta, tipo de operação (utilizando case when atraves da numeração do tipo), valor e receptor da operação (apenas em caso de operacao de transação)
 -- -----------------------------------------------------
-SELECT 
-	-- Informações da conta.
-	ac.number `numero conta`,
-	-- Informações de operacoes (A operation_type é numerada de 0 a 2, onde representam operacoes do tipo saque, depósito e transação respectivamente)
-	CASE 
-		WHEN op.operation_type = 0 THEN 'SAQUE'
-		WHEN op.operation_type = 1 THEN 'DEPÓSITO'
-		WHEN op.operation_type = 2 THEN 'TRANSCAÇÃO'
-		ELSE NULL
-	END AS `tipo da operacao`,
-	op.balance `valor`,
-	-- Informações da conta que recebe a operação (apenas em caso de operação de transação)
-	acre.number `numero conta receptor`
-FROM account ac
-	INNER JOIN operation op ON ac.id = op.account_id
-	LEFT JOIN account acre ON op.account_id_receiver = acre.id;
+DROP VIEW IF EXISTS `sistema_bancario_backend_teste`.`view_conta_operacao`;
+CREATE VIEW `sistema_bancario_backend_teste`.`view_conta_operacao` AS SELECT relatorio.* FROM (
+	SELECT 
+		-- Informações da conta.
+		ac.number `numero conta`,
+		-- Informações de operacoes (A operation_type é numerada de 0 a 2, onde representam operacoes do tipo saque, depósito e transação respectivamente)
+		CASE 
+			WHEN op.operation_type = 0 THEN 'SAQUE'
+			WHEN op.operation_type = 1 THEN 'DEPÓSITO'
+			WHEN op.operation_type = 2 THEN 'TRANSCAÇÃO'
+			ELSE NULL
+		END AS `tipo da operacao`,
+		op.balance `valor`,
+		-- Informações da conta que recebe a operação (apenas em caso de operação de transação)
+		acre.number `numero conta receptor`
+	FROM account ac
+		INNER JOIN operation op ON ac.id = op.account_id
+		LEFT JOIN account acre ON op.account_id_receiver = acre.id
+) AS relatorio;
+SELECT * FROM `sistema_bancario_backend_teste`.`view_conta_operacao`;
 
 
 -- -----------------------------------------------------
@@ -242,10 +250,38 @@ FROM account ac
 --
 -- Deve retornar o número da agência e endereço completo em um texto único
 -- -----------------------------------------------------
-SELECT 
-	-- Informações da agencia
-	ag.number `numero agencia`,
-	-- Informações de endereço do login
-	CONCAT(ad.street,' N°',ad.number,', ',ad.city,'/',ad.state,' - ',ad.country, ' (',ad.postal_code,')')`endereco`
-FROM agency ag
-	INNER JOIN address ad ON ad.id = ag.address_id;
+DROP VIEW IF EXISTS `sistema_bancario_backend_teste`.`view_agencia_endereco`;
+CREATE VIEW `sistema_bancario_backend_teste`.`view_agencia_endereco` AS SELECT relatorio.* FROM (
+	SELECT 
+		-- Informações da agencia
+		ag.number `numero agencia`,
+		-- Informações de endereço do login
+		CONCAT(ad.street,' N°',ad.number,', ',ad.city,'/',ad.state,' - ',ad.country, ' (',ad.postal_code,')')`endereco`
+	FROM agency ag
+		INNER JOIN address ad ON ad.id = ag.address_id
+) AS relatorio;
+SELECT * FROM `sistema_bancario_backend_teste`.`view_agencia_endereco`;
+
+
+-- -----------------------------------------------------
+-- Relatório de dados de agencia x quantidade de pessoa física x quantidade de pessoa jurídica
+--
+-- Deve retornar o número da agência, a quantidade de pessoas fisicas e a quantidade de pessoas jurídicas
+-- -----------------------------------------------------
+DROP VIEW IF EXISTS `sistema_bancario_backend_teste`.`view_agencia_quantidadepessoafisica_quantidadepessoajuridica`;
+CREATE VIEW `sistema_bancario_backend_teste`.`view_agencia_quantidadepessoafisica_quantidadepessoajuridica` AS 
+    SELECT
+        relatorio.number `numero agencia`,
+        -- Contagem de campos nulos em account por agency
+        SUM(IF(ac.legal_person_id IS NULL, 0, 1)) AS `pessoas jurídicas`,
+        SUM(IF(ac.individual_person_id IS NULL, 0, 1)) AS `pessoas físicas`
+    FROM (
+        SELECT 
+            -- Informações da agência
+            ag.id,
+            ag.number
+        FROM agency ag
+    ) AS relatorio
+    LEFT JOIN account ac ON ac.agency_id = relatorio.id
+GROUP BY relatorio.id, relatorio.number;
+SELECT * FROM `sistema_bancario_backend_teste`.`view_agencia_quantidadepessoafisica_quantidadepessoajuridica`;
