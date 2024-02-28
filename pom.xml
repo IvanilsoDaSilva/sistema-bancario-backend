@@ -11,7 +11,7 @@
 	<groupId>com.rysirengback</groupId>
 	<artifactId>banco-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>banco-backend</name>
 	<description>Um sistema com o incetivo de simular diversas funcionalidades de um banco padrão</description>
 	<properties>
