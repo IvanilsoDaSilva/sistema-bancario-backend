@@ -6,18 +6,20 @@
 --
 -- Inserindo cinco endereços
 -- -----------------------------------------------------
-START TRANSACTION;
-	INSERT INTO `sistema_bancario_backend_teste`.`address` (
-		id,created_date,last_modified_date,country,state,city,district,street,number,postal_code,complement
-	) VALUES
-		('000', '2020-01-01', '2020-01-01', 'BRASIL', 'RJ', 'RIO DE JANEIRO', 'COPACABANA', 'AVENIDA ATLÂNTICA', '100', '22070-000', 'PERTO DA PRAIA'),
-		('001', '2020-04-28', '2020-04-28', 'BRASIL', 'SP', 'SAO PAULO', 'MOEMA', 'RUA DOS PINHEIROS', '200', '04583-000', 'PRÓXIMO AO PARQUE'),
-		('010', '2020-12-05', '2020-12-06', 'BRASIL', 'ES', 'VILA VELHA', 'CENTRO', 'RUA DOS COQUEIROS', '300', '29100-000', 'AO LADO DO MERCADO'),
-		('011', '2020-03-03', '2020-03-04', 'BRASIL', 'BA', 'SALVADOR', 'BARRA', 'AVENIDA OCEÂNICA', '400', '40140-090', 'PRÓXIMO AO FAROL'),
-		('100', '2020-03-03', '2020-03-04', 'BRASIL', 'RJ', 'CAMPOS DOS GOYTACAZES', 'TOCOS', 'RUA GUILHERME MORISSON', '60', '28148-000', 'PROXIMO AO BAR DO DURVAL')
-	;
-COMMIT;
--- ROLLBACK;
+LOCK TABLES `sistema_bancario_backend_teste`.`address` READ;
+	START TRANSACTION;
+		INSERT INTO `sistema_bancario_backend_teste`.`address` (
+			id,created_date,last_modified_date,country,state,city,district,street,number,postal_code,complement
+		) VALUES
+			('000', '2020-01-01', '2020-01-01', 'BRASIL', 'RJ', 'RIO DE JANEIRO', 'COPACABANA', 'AVENIDA ATLÂNTICA', '100', '22070-000', 'PERTO DA PRAIA'),
+			('001', '2020-04-28', '2020-04-28', 'BRASIL', 'SP', 'SAO PAULO', 'MOEMA', 'RUA DOS PINHEIROS', '200', '04583-000', 'PRÓXIMO AO PARQUE'),
+			('010', '2020-12-05', '2020-12-06', 'BRASIL', 'ES', 'VILA VELHA', 'CENTRO', 'RUA DOS COQUEIROS', '300', '29100-000', 'AO LADO DO MERCADO'),
+			('011', '2020-03-03', '2020-03-04', 'BRASIL', 'BA', 'SALVADOR', 'BARRA', 'AVENIDA OCEÂNICA', '400', '40140-090', 'PRÓXIMO AO FAROL'),
+			('100', '2020-03-03', '2020-03-04', 'BRASIL', 'RJ', 'CAMPOS DOS GOYTACAZES', 'TOCOS', 'RUA GUILHERME MORISSON', '60', '28148-000', 'PROXIMO AO BAR DO DURVAL')
+		;
+	COMMIT;
+	-- ROLLBACK;
+UNLOCK TABLES;
 -- SELECT * FROM `sistema_bancario_backend_teste`.`address`;
 
 
@@ -27,16 +29,18 @@ COMMIT;
 -- Inserindo três agências
 -- Cada agência possui um dos endereços criados.
 -- -----------------------------------------------------
-START TRANSACTION;
-	INSERT INTO `sistema_bancario_backend_teste`.`agency` (
-		id,created_date,last_modified_date,address_id,number
-	) VALUES
-		('000', '2020-01-01', '2020-01-01', '000', '001'),
-		('001', '2020-04-28', '2020-04-28', '001', '011'),
-		('010', '2020-12-06', '2020-12-06', '010', '222')
-	;
-COMMIT;
--- ROLLBACK;
+LOCK TABLES `sistema_bancario_backend_teste`.`agency` READ;
+	START TRANSACTION;
+		INSERT INTO `sistema_bancario_backend_teste`.`agency` (
+			id,created_date,last_modified_date,address_id,number
+		) VALUES
+			('000', '2020-01-01', '2020-01-01', '000', '001'),
+			('001', '2020-04-28', '2020-04-28', '001', '011'),
+			('010', '2020-12-06', '2020-12-06', '010', '222')
+		;
+	COMMIT;
+	-- ROLLBACK;
+UNLOCK TABLES;
 -- SELECT * FROM `sistema_bancario_backend_teste`.`agency`;
 
 
@@ -45,16 +49,18 @@ COMMIT;
 --
 -- Inserindo três pessoas físicas
 -- -----------------------------------------------------
-START TRANSACTION;
-	INSERT INTO `sistema_bancario_backend_teste`.`individual_person` (
-		id,created_date,last_modified_date,name,cpf,rg,birth
-	) VALUES
-		('000', '2020-01-01', '2020-01-01', 'SON GOKU', '123.412.423-99', '333.123.534-0', '736-04-16'),
-		('001', '2020-04-28', '2020-04-28', 'NARUTO UZUMAKI', '001.344.566-00', '863.000.321-7', '2002-10-10'),
-		('010', '2020-12-06', '2020-12-06', 'MONKEY D. LUFFY', '332.642.444-12', '21.332.343-1', '2006-05-05')
-	;
-COMMIT;
--- ROLLBACK;
+LOCK TABLES `sistema_bancario_backend_teste`.`individual_person` READ;
+	START TRANSACTION;
+		INSERT INTO `sistema_bancario_backend_teste`.`individual_person` (
+			id,created_date,last_modified_date,name,cpf,rg,birth
+		) VALUES
+			('000', '2020-01-01', '2020-01-01', 'SON GOKU', '123.412.423-99', '333.123.534-0', '736-04-16'),
+			('001', '2020-04-28', '2020-04-28', 'NARUTO UZUMAKI', '001.344.566-00', '863.000.321-7', '2002-10-10'),
+			('010', '2020-12-06', '2020-12-06', 'MONKEY D. LUFFY', '332.642.444-12', '21.332.343-1', '2006-05-05')
+		;
+	COMMIT;
+	-- ROLLBACK;
+UNLOCK TABLES;
 -- SELECT * FROM `sistema_bancario_backend_teste`.`individual_person`;
 
 
@@ -63,15 +69,17 @@ COMMIT;
 --
 -- Inserindo duas pessoas jurídicas
 -- -----------------------------------------------------
-START TRANSACTION;
-	INSERT INTO `sistema_bancario_backend_teste`.`legal_person` (
-		id,created_date,last_modified_date,company_name,cnpj
-	) VALUES
-		('000', '2020-01-01', '2020-01-01', 'G9 SOLUCOES INTEGRADAS EM MSN LTDA.', '12.345.678/0001-00'),
-		('001', '2020-04-28', '2020-04-28', 'LIDER MEGA ENSINO LTDA.', '12.765.678/0003-00')
-	;
-COMMIT;
--- ROLLBACK;
+LOCK TABLES `sistema_bancario_backend_teste`.`legal_person` READ;
+	START TRANSACTION;
+		INSERT INTO `sistema_bancario_backend_teste`.`legal_person` (
+			id,created_date,last_modified_date,company_name,cnpj
+		) VALUES
+			('000', '2020-01-01', '2020-01-01', 'G9 SOLUCOES INTEGRADAS EM MSN LTDA.', '12.345.678/0001-00'),
+			('001', '2020-04-28', '2020-04-28', 'LIDER MEGA ENSINO LTDA.', '12.765.678/0003-00')
+		;
+	COMMIT;
+	-- ROLLBACK;
+UNLOCK TABLES;
 -- SELECT * FROM `sistema_bancario_backend_teste`.`legal_person`;
 
 
@@ -83,18 +91,20 @@ COMMIT;
 -- As duas contas posteriores serão ligadas a duas pessoas juridicas criadas
 -- A última conta será ligada a última pessoa física criada (MONKEY D. LUFFY)
 -- -----------------------------------------------------
-START TRANSACTION;
-	INSERT INTO `sistema_bancario_backend_teste`.`account` (
-		id,created_date,last_modified_date,number,password,balance,account_type,locked,agency_id,individual_person_id,legal_person_id
-	) VALUES
-		('000', '2020-01-01', '2020-01-01', '123123123', 'senha123', 0.50, 0,0,'000','000',NULL),
-		('001', '2020-04-28', '2020-04-28', '235542333', 'Senh@321', 0.30, 1,1,'000','000',NULL),
-		('010', '2020-04-28', '2020-04-28', '235542323', 'Senh@321', 1200.00, 2,0,'001',NULL,'000'),
-		('011', '2020-04-28', '2020-04-28', '235542353', 'Senh@321', 3550.00, 2,0,'010',NULL,'001'),
-		('100', '2020-12-06', '2020-12-06', '455745453', 'P@ass333', 3000000000.00,0,0,'010','010',NULL)
-	;
-COMMIT;
--- ROLLBACK;
+LOCK TABLES `sistema_bancario_backend_teste`.`account` READ;
+	START TRANSACTION;
+		INSERT INTO `sistema_bancario_backend_teste`.`account` (
+			id,created_date,last_modified_date,number,password,balance,account_type,locked,agency_id,individual_person_id,legal_person_id
+		) VALUES
+			('000', '2020-01-01', '2020-01-01', '123123123', 'senha123', 0.50, 0,0,'000','000',NULL),
+			('001', '2020-04-28', '2020-04-28', '235542333', 'Senh@321', 0.30, 1,1,'000','000',NULL),
+			('010', '2020-04-28', '2020-04-28', '235542323', 'Senh@321', 1200.00, 2,0,'001',NULL,'000'),
+			('011', '2020-04-28', '2020-04-28', '235542353', 'Senh@321', 3550.00, 2,0,'010',NULL,'001'),
+			('100', '2020-12-06', '2020-12-06', '455745453', 'P@ass333', 3000000000.00,0,0,'010','010',NULL)
+		;
+	COMMIT;
+	-- ROLLBACK;
+UNLOCK TABLES;
 -- SELECT * FROM `sistema_bancario_backend_teste`.`account`;
 
 
@@ -105,16 +115,18 @@ COMMIT;
 -- Os dois primeiros no mesmo local em datas e ips diferentes e na mesma conta (BA - SALVADOR)
 -- O último na conta 455745453 em RJ - CAMPOS DOS GOYTACAZES
 -- -----------------------------------------------------
-START TRANSACTION;
-	INSERT INTO `sistema_bancario_backend_teste`.`log` (
-		id,created_date,last_modified_date,ip,account_id,address_id
-	) VALUES
-		('000', '2023-01-01', '2023-01-01', '192.164.000.1', '001', '011'),
-		('001', '2023-04-28', '2023-04-28', '192.164.000.2', '001', '011'),
-		('010', '2023-04-28', '2023-04-28', '192.168.212.3', '100', '100')
-	;
-COMMIT;
--- ROLLBACK;
+LOCK TABLES `sistema_bancario_backend_teste`.`log` READ;
+	START TRANSACTION;
+		INSERT INTO `sistema_bancario_backend_teste`.`log` (
+			id,created_date,last_modified_date,ip,account_id,address_id
+		) VALUES
+			('000', '2023-01-01', '2023-01-01', '192.164.000.1', '001', '011'),
+			('001', '2023-04-28', '2023-04-28', '192.164.000.2', '001', '011'),
+			('010', '2023-04-28', '2023-04-28', '192.168.212.3', '100', '100')
+		;
+	COMMIT;
+	-- ROLLBACK;
+UNLOCK TABLES;
 -- SELECT * FROM `sistema_bancario_backend_teste`.`log`;
 
 
@@ -125,31 +137,35 @@ COMMIT;
 -- Duas operações (saque de 100,00 e depósito de 3000,00) na conta 123123123
 -- Uma operação de transferência da conta 455745453 para 123123123
 -- -----------------------------------------------------
-START TRANSACTION;
-	INSERT INTO `sistema_bancario_backend_teste`.`operation` (
-		id,created_date,last_modified_date,balance,operation_type,description,account_id,account_id_receiver
-	) VALUES
-		('000', '2023-01-01', '2023-01-01', 100.00, 0, 'Saque para pagar as contas','000',NULL),
-		('001', '2023-02-02', '2023-02-02', 3000.00, 1, 'Depósito do salário','000',NULL),
-		('010', '2024-01-01', '2024-01-01', 50.00, 2, 'Pagar Goku','100','000')
-	;
-COMMIT;
--- ROLLBACK;
+LOCK TABLES `sistema_bancario_backend_teste`.`operation` READ;
+	START TRANSACTION;
+		INSERT INTO `sistema_bancario_backend_teste`.`operation` (
+			id,created_date,last_modified_date,balance,operation_type,description,account_id,account_id_receiver
+		) VALUES
+			('000', '2023-01-01', '2023-01-01', 100.00, 0, 'Saque para pagar as contas','000',NULL),
+			('001', '2023-02-02', '2023-02-02', 3000.00, 1, 'Depósito do salário','000',NULL),
+			('010', '2024-01-01', '2024-01-01', 50.00, 2, 'Pagar Goku','100','000')
+		;
+	COMMIT;
+	-- ROLLBACK;
+UNLOCK TABLES;
 -- SELECT * FROM `sistema_bancario_backend_teste`.`operation`;
 
 
 -- -----------------------------------------------------
 -- Atualizando de saldo nas contas com saldo acima de 2000,00 reais
 -- -----------------------------------------------------
-START TRANSACTION;
-	UPDATE account 
-		SET balance = CASE 
-			WHEN balance > 2000.00 THEN balance + balance * 0.00005
-			ELSE balance
-		END
-	WHERE balance > 2000.00;
-COMMIT;
--- ROLLBACK;
+LOCK TABLES `sistema_bancario_backend_teste`.`account` READ;
+	START TRANSACTION;
+		UPDATE `sistema_bancario_backend_teste`.`account` 
+			SET balance = CASE 
+				WHEN balance > 2000.00 THEN balance + balance * 0.00005
+				ELSE balance
+			END
+		WHERE balance > 2000.00;
+	COMMIT;
+	-- ROLLBACK;
+UNLOCK TABLES;
 -- SELECT * FROM `sistema_bancario_backend_teste`.`account`;
 
 -- -----------------------------------------------------
@@ -182,8 +198,10 @@ CREATE VIEW `sistema_bancario_backend_teste`.`view_pessoafisica_conta_endereco_a
 		LEFT JOIN agency ag ON ag.id = ac.agency_id
 		LEFT JOIN address ad ON ag.address_id = ad.id
 ) AS relatorio;
-SELECT * FROM `sistema_bancario_backend_teste`.`view_pessoafisica_conta_endereco_agencia`;
-            
+LOCK TABLES `sistema_bancario_backend_teste`.`view_pessoafisica_conta_endereco_agencia` WRITE;
+	SELECT * FROM `sistema_bancario_backend_teste`.`view_pessoafisica_conta_endereco_agencia`;
+UNLOCK TABLES;
+
             
 -- -----------------------------------------------------
 -- Relatório de dados da pessoa juridica x contas x agência x endereço da agencia
@@ -215,7 +233,9 @@ CREATE VIEW `sistema_bancario_backend_teste`.`view_pessoajuridica_conta_endereco
 		LEFT JOIN agency ag ON ag.id = ac.agency_id
 		LEFT JOIN address ad ON ag.address_id = ad.id
 ) AS relatorio;
-SELECT * FROM `sistema_bancario_backend_teste`.`view_pessoajuridica_conta_endereco_agencia`;
+LOCK TABLES `sistema_bancario_backend_teste`.`view_pessoajuridica_conta_endereco_agencia` WRITE;
+	SELECT * FROM `sistema_bancario_backend_teste`.`view_pessoajuridica_conta_endereco_agencia`;
+UNLOCK TABLES;
 
 
 -- -----------------------------------------------------
@@ -239,7 +259,9 @@ CREATE VIEW `sistema_bancario_backend_teste`.`view_log_conta` AS SELECT relatori
 		INNER JOIN log lo ON ac.id = lo.account_id
 		LEFT JOIN address ad ON ad.id = lo.address_id
 ) AS relatorio;
-SELECT * FROM `sistema_bancario_backend_teste`.`view_log_conta`;
+LOCK TABLES `sistema_bancario_backend_teste`.`view_log_conta` WRITE;
+	SELECT * FROM `sistema_bancario_backend_teste`.`view_log_conta`;
+UNLOCK TABLES;
 
         
 -- -----------------------------------------------------
@@ -266,7 +288,9 @@ CREATE VIEW `sistema_bancario_backend_teste`.`view_conta_operacao` AS SELECT rel
 		INNER JOIN operation op ON ac.id = op.account_id
 		LEFT JOIN account acre ON op.account_id_receiver = acre.id
 ) AS relatorio;
-SELECT * FROM `sistema_bancario_backend_teste`.`view_conta_operacao`;
+LOCK TABLES `sistema_bancario_backend_teste`.`view_conta_operacao` WRITE;
+	SELECT * FROM `sistema_bancario_backend_teste`.`view_conta_operacao`;
+UNLOCK TABLES;
 
 
 -- -----------------------------------------------------
@@ -284,7 +308,9 @@ CREATE VIEW `sistema_bancario_backend_teste`.`view_agencia_endereco` AS SELECT r
 	FROM agency ag
 		INNER JOIN address ad ON ad.id = ag.address_id
 ) AS relatorio;
-SELECT * FROM `sistema_bancario_backend_teste`.`view_agencia_endereco`;
+LOCK TABLES `sistema_bancario_backend_teste`.`view_agencia_endereco` WRITE;
+	SELECT * FROM `sistema_bancario_backend_teste`.`view_agencia_endereco`;
+UNLOCK TABLES;
 
 
 -- -----------------------------------------------------
@@ -308,4 +334,6 @@ CREATE VIEW `sistema_bancario_backend_teste`.`view_agencia_quantidadepessoafisic
     ) AS relatorio
     LEFT JOIN account ac ON ac.agency_id = relatorio.id
 GROUP BY relatorio.id, relatorio.number;
-SELECT * FROM `sistema_bancario_backend_teste`.`view_agencia_quantidadepessoafisica_quantidadepessoajuridica`;
+LOCK TABLES `sistema_bancario_backend_teste`.`view_agencia_quantidadepessoafisica_quantidadepessoajuridica` WRITE;
+	SELECT * FROM `sistema_bancario_backend_teste`.`view_agencia_quantidadepessoafisica_quantidadepessoajuridica`;
+UNLOCK TABLES;
