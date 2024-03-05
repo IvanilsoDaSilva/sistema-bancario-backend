@@ -1,3 +1,4 @@
+DROP SCHEMA IF EXISTS `sistema_bancario_backend_teste`;
 CREATE SCHEMA IF NOT EXISTS `sistema_bancario_backend_teste` DEFAULT CHARACTER SET utf8mb4;
 USE `sistema_bancario_backend_teste`;
 
