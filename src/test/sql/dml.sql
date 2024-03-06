@@ -11,7 +11,7 @@ LOCK TABLES `sistema_bancario_backend_teste`.`address` READ;
 		INSERT INTO `sistema_bancario_backend_teste`.`address` (
 			id,created_date,last_modified_date,country,state,city,district,street,number,postal_code,complement
 		) VALUES
-			('000', '2020-01-01', '2020-01-01', 'BRASIL', 'RJ', 'RIO DE JANEIRO', 'COPACABANA', 'AVENIDA ATLÂNTICA', '100', '22070-000', 'PERTO DA PRAIA'),
+			('000', '2020-01-01', '2020-01-01', 'BRASIL', 'RJ', 'RIO DE JANEIRO', 'COPACABANA', 'AVENIDA ATLÂNTICA', '100', '22070-000', `sistema_bancario_backend_teste`.`FORMAT`('  perto da praia  ')),
 			('001', '2020-04-28', '2020-04-28', 'BRASIL', 'SP', 'SAO PAULO', 'MOEMA', 'RUA DOS PINHEIROS', '200', '04583-000', 'PRÓXIMO AO PARQUE'),
 			('010', '2020-12-05', '2020-12-06', 'BRASIL', 'ES', 'VILA VELHA', 'CENTRO', 'RUA DOS COQUEIROS', '300', '29100-000', 'AO LADO DO MERCADO'),
 			('011', '2020-03-03', '2020-03-04', 'BRASIL', 'BA', 'SALVADOR', 'BARRA', 'AVENIDA OCEÂNICA', '400', '40140-090', 'PRÓXIMO AO FAROL'),
