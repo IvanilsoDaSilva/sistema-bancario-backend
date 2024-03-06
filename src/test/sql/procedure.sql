@@ -25,3 +25,9 @@ END//
 -- ROUTINES
 -- -----------------------------------------------------
 SELECT routine_name FROM information_schema.routines
+
+
+-- -----------------------------------------------------
+-- Configuração do delimitador
+-- -----------------------------------------------------
+DELIMITER ;

@@ -1,4 +1,4 @@
--- Comandos FUNCTION
+-- Comandos TRIGGER
 
 
 -- -----------------------------------------------------
@@ -8,18 +8,12 @@ DELIMITER //
 
 
 -- -----------------------------------------------------
--- FUNCTION
+-- TRIGGER
 -- -----------------------------------------------------
-DROP FUNCTION IF EXISTS FORMAT//
-CREATE FUNCTION FORMAT(text VARCHAR(255)) RETURNS VARCHAR(255) BEGIN
-	RETURN (UPPER(LTRIM(RTRIM(text))));
+DROP TRIGGER IF EXISTS update_balance//
+CREATE TRIGGER update_balance BEFORE INSERT ON `sistema_bancario_backend_teste`.`operation` FOR EACH ROW BEGIN
+    SET NEW.balance = NEW.balance+10.00;
 END//
-
-
--- -----------------------------------------------------
--- ROUTINES
--- -----------------------------------------------------
-SELECT routine_name FROM information_schema.routines;
 
 
 -- -----------------------------------------------------
