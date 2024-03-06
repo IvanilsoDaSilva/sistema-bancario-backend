@@ -13,6 +13,7 @@ USE mysql;
 -- Inserindo o usuário administrador.
 -- O usuário administrador terá todas permissões no schema.
 -- -----------------------------------------------------
+DROP user IF EXISTS SB_administrador@localhost;
 CREATE user 'SB_administrador'@'localhost' IDENTIFIED BY '123';
 GRANT
 	ALL
@@ -27,6 +28,7 @@ SHOW GRANTS FOR 'SB_administrador'@'localhost';
 -- Inserindo o usuário gerente de nivel alto.
 -- O usuário gerente terá todas permissões no schema.
 -- -----------------------------------------------------
+DROP user IF EXISTS SB_gerente_alto@localhost;
 CREATE user 'SB_gerente_alto'@'localhost' IDENTIFIED BY '123';
 GRANT 
 	SELECT
@@ -49,6 +51,7 @@ SHOW GRANTS FOR 'SB_gerente_alto'@'localhost';
 -- Inserindo o usuário gerente de nivel baixo.
 -- O usuário gerente terá todas permissões no schema.
 -- -----------------------------------------------------
+DROP user IF EXISTS SB_gerente_baixo@localhost;
 CREATE user 'SB_gerente_baixo'@'localhost' IDENTIFIED BY '123';
 GRANT
 	SELECT(number,account_type,locked,agency_id,individual_person_id,legal_person_id)
@@ -57,8 +60,9 @@ TO 'SB_gerente_baixo'@'localhost';
 SHOW GRANTS FOR 'SB_gerente_baixo'@'localhost';
 
 
-
-SELECT * FROM mysql.user;
--- DROP user SB_administrador@localhost;
--- DROP user SB_gerente_alto@localhost;
--- DROP user SB_gerente_baixo@localhost;
+-- -----------------------------------------------------
+-- Table USER
+-- 
+-- Mostrar todos os usuários
+-- -----------------------------------------------------
+SELECT * FROM user;
