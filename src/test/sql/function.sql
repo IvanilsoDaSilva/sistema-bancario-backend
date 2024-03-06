@@ -8,7 +8,7 @@ DELIMITER //
 
 
 -- -----------------------------------------------------
--- Table FUNCTION
+-- FUNCTION
 -- -----------------------------------------------------
 DROP FUNCTION IF EXISTS FORMAT//
 CREATE FUNCTION FORMAT(text VARCHAR(255)) RETURNS VARCHAR(255) BEGIN
@@ -17,6 +17,6 @@ END//
 
 
 -- -----------------------------------------------------
--- Table ROUTINES
+-- ROUTINES
 -- -----------------------------------------------------
-SELECT specific_name FROM information_schema.routines;
+SELECT routine_name FROM information_schema.routines;
