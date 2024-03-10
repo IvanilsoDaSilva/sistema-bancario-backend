@@ -1,12 +1,6 @@
 package com.rysirengback.bancobackend.dto.response;
 
-import com.rysirengback.bancobackend.entities.AccountEntity;
-import com.rysirengback.bancobackend.entities.AgencyEntity;
-import com.rysirengback.bancobackend.entities.IndividualPersonEntity;
-import com.rysirengback.bancobackend.entities.LegalPersonEntity;
-
 import java.sql.Date;
-import java.util.List;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
