@@ -24,8 +24,6 @@ import java.util.Optional;
 class TestAccountController {
     @Autowired
     private MockMvc mockMvc;
-    @Autowired
-    private AccountController AccountControler;
     @MockBean
     private AccountRepository accountRepository;
     @MockBean
