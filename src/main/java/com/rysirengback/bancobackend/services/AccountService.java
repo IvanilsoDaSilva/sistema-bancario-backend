@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,17 +35,19 @@ public class AccountService {
 		
 		for (ReadAccountDTO account : requestResponse) {
 			if (account.getIndividualPersonId() != null) {
-				IndividualPersonEntity person = individualPersonRepository.getById(account.getIndividualPersonId());
+				Optional<IndividualPersonEntity> person = individualPersonRepository.findById(account.getIndividualPersonId());
+
+				System.out.println(person);
 				
-				account.setName(person.getName());
-				account.setCpf(person.getCpf());
-				account.setRg(person.getRg());
-				account.setBirth(person.getBirth());
+				account.setName(person.get().getName());
+				account.setCpf(person.get().getCpf());
+				account.setRg(person.get().getRg());
+				account.setBirth(person.get().getBirth());
 			} else {
-				LegalPersonEntity person = legalPersonRepository.getById(account.getLegalPersonId());
+				Optional<LegalPersonEntity> person = legalPersonRepository.findById(account.getLegalPersonId());
 				
-				account.setCompanyName(person.getCompanyName());
-				account.setCnpj(person.getCnpj());
+				account.setCompanyName(person.get().getCompanyName());
+				account.setCnpj(person.get().getCnpj());
 			}
 		}
 		
