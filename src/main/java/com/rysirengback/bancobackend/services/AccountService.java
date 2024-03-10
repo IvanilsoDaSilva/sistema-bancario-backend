@@ -36,8 +36,6 @@ public class AccountService {
 		for (ReadAccountDTO account : requestResponse) {
 			if (account.getIndividualPersonId() != null) {
 				Optional<IndividualPersonEntity> person = individualPersonRepository.findById(account.getIndividualPersonId());
-
-				System.out.println(person);
 				
 				account.setName(person.get().getName());
 				account.setCpf(person.get().getCpf());
