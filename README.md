@@ -37,7 +37,7 @@ This project is intended to provide a solid foundation for anyone just starting 
   ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=FFFFFF&color=FF00FF)&nbsp;
 
   <!-- Softwares -->
-  ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=FFFFFF&color=FF0000)&nbsp;
+  ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=FFFFFF&color=FF00FF)&nbsp;
 
   <!-- Others -->
   ![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=FFFFFF&color=FF00FF)&nbsp;
