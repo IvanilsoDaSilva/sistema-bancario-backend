@@ -45,12 +45,14 @@ This project is intended to provide a solid foundation for anyone just starting 
   
 </div>
 
-<h2 align="right" id="ponto1">1.4. HOW TO USE 💡</h2>
+<h2 align="right">1.4. HOW TO USE 💡</h2>
 <p align="right">Use the following commands (if there are commands) by <kbd>CTRL</kbd>+<kbd>V</kbd> where necessary</p>
 
 📌 IMPORT CODE THROUGH MAVEN INTO YOUR IDE
 
-<h2 align="right">1.5. OTHER REPOSITORIES 📘</h2>
+<h2 align="right">1.5. END-POINTS 🚪</h2>
+
+<h2 align="right">1.6. OTHER REPOSITORIES 📘</h2>
 
 <div>
   <img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=IvanilsoDaSilva&repo=sistema-bancario-frontend&bg_color=FF00FF&title_color=FFFFFF&text_color=FFFFFF&icon_color=FFFFFF"/>
