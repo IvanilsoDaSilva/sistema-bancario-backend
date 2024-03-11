@@ -1,7 +1,7 @@
 package com.rysirengback.bancobackend;
 
-import com.rysirengback.bancobackend.repositories.*;
 import com.rysirengback.bancobackend.entities.*;
+import com.rysirengback.bancobackend.repositories.*;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
