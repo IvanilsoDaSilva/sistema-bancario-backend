@@ -49,6 +49,7 @@ class TestLegalPersonController {
         AccountEntity account = AccountEntity.builder()
                 .id("1")
                 .legalPerson(person)
+                .number("000002")
                 .agency(agency)
                 .password("123")
                 .build();
@@ -58,7 +59,7 @@ class TestLegalPersonController {
         this.mockMvc.perform(post("/account/legal-person/create")
                         .headers(new HttpHeaders() {{setContentType(MediaType.APPLICATION_JSON);}})
                         .content(
-                                "{\"id\": \"3\", \"companyName\": \"Empresa Massa\", \"cnpj\": \"00.000.000/0001-03\", \"password\": \"123\", \"agencyNumber\": \"001\"}"
+                                "{\"id\": \"3\", \"companyName\": \"Empresa Massa\", \"cnpj\": \"00.000.000/0001-03\", \"number\": \"000002\", \"password\": \"123\", \"agencyNumber\": \"001\"}"
                         )
                         .accept(MediaType.APPLICATION_JSON)
                 )
