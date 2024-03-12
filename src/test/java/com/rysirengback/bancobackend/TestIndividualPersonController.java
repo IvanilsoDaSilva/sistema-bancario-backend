@@ -1,16 +1,19 @@
 package com.rysirengback.bancobackend;
 
-import com.rysirengback.bancobackend.entities.*;
-import com.rysirengback.bancobackend.repositories.*;
-
+import com.rysirengback.bancobackend.entities.AccountEntity;
+import com.rysirengback.bancobackend.entities.AgencyEntity;
+import com.rysirengback.bancobackend.entities.IndividualPersonEntity;
+import com.rysirengback.bancobackend.repositories.AccountRepository;
+import com.rysirengback.bancobackend.repositories.AgencyRepository;
+import com.rysirengback.bancobackend.repositories.IndividualPersonRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -19,24 +22,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class TestLegalPersonController {
+class TestIndividualPersonController {
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private LegalPersonRepository legalPersonRepository;
+    private IndividualPersonRepository individualPersonRepository;
     @MockBean
     private AgencyRepository agencyRepository;
     @MockBean
     private AccountRepository accountRepository;
 
 	@Test
-	void createLegalPersonAccount() throws Exception {
-        LegalPersonEntity person = LegalPersonEntity.builder()
-                .id("3")
-                .companyName("Empresa Massa")
-                .cnpj("00.000.000/0001-03")
+	void createIndividualPersonAccount() throws Exception {
+        IndividualPersonEntity person = IndividualPersonEntity.builder()
+                .id("4")
+                .name("Usuario")
+                .cpf("000.000.000-00")
                 .build();
-        Mockito.when(legalPersonRepository.save(Mockito.any()))
+        Mockito.when(individualPersonRepository.save(Mockito.any()))
                 .thenReturn(person);
 
         AgencyEntity agency = AgencyEntity.builder()
@@ -48,18 +51,18 @@ class TestLegalPersonController {
 
         AccountEntity account = AccountEntity.builder()
                 .id("1")
-                .legalPerson(person)
-                .number("000002")
+                .individualPerson(person)
+                .number("000001")
                 .agency(agency)
                 .password("123")
                 .build();
         Mockito.when(accountRepository.save(Mockito.any()))
                 .thenReturn(account);
 
-        this.mockMvc.perform(post("/account/legal-person/create")
+        this.mockMvc.perform(post("/account/individual-person/create")
                         .headers(new HttpHeaders() {{setContentType(MediaType.APPLICATION_JSON);}})
                         .content(
-                                "{\"id\": \"3\", \"companyName\": \"Empresa Massa\", \"cnpj\": \"00.000.000/0001-03\", \"number\": \"000002\", \"password\": \"123\", \"agencyNumber\": \"001\"}"
+                                "{\"id\": \"4\", \"name\": \"Usuario\", \"cpf\": \"000.000.000-00\", \"number\": \"000001\", \"password\": \"123\", \"agencyNumber\": \"001\"}"
                         )
                         .accept(MediaType.APPLICATION_JSON)
                 )
