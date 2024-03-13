@@ -10,8 +10,8 @@ DELIMITER //
 -- -----------------------------------------------------
 -- FUNCTION
 -- -----------------------------------------------------
-DROP FUNCTION IF EXISTS FORMAT//
-CREATE FUNCTION FORMAT(text VARCHAR(255)) RETURNS VARCHAR(255) BEGIN
+DROP FUNCTION IF EXISTS FORMATER//
+CREATE FUNCTION FORMATER(text VARCHAR(255)) RETURNS VARCHAR(255) BEGIN
 	RETURN (UPPER(LTRIM(RTRIM(text))));
 END//
 
