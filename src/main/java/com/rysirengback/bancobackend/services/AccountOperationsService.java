@@ -66,10 +66,33 @@ public class AccountOperationsService {
 		AccountEntity account = modelMapper.map(accountRepository.findById(request.getId()), AccountEntity.class);
 		
 		if (request.getBalance() <= account.getBalance() && request.getBalance()>0) {
-			
 			account.setBalance(account.getBalance()-request.getBalance());
 			
 			accountRepository.save(account);
+		} else {
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@Transactional
+	public void transferInAccount(TransferDTO request) {
+		System.out.println(request.getId());
+		System.out.println(request.getTarget());
+		System.out.println(request.getBalance());
+
+		AccountEntity account = modelMapper.map(accountRepository.findById(request.getId()), AccountEntity.class);
+		AccountEntity target = modelMapper.map(accountRepository.findByNumber(request.getTarget()), AccountEntity.class);
+
+		if (request.getBalance() <= account.getBalance() && request.getBalance()>0) {
+			System.out.println(request.getId());
+			System.out.println(request.getTarget());
+			System.out.println(request.getBalance());
+
+			account.setBalance(account.getBalance()-request.getBalance());
+			account.setBalance(account.getBalance()+request.getBalance());
+
+			accountRepository.save(account);
+			accountRepository.save(target);
 		} else {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
 		}

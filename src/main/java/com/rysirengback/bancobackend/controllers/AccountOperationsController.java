@@ -41,7 +41,7 @@ public class AccountOperationsController {
 	@PostMapping(value = "/transfer")
 	@ResponseStatus(HttpStatus.CREATED)
 	@CrossOrigin
-	public void transferInAccount(@RequestBody WithdrawDTO request) {
-//		accountOperationsService.transferInAccount(request);
+	public void transferInAccount(@RequestBody TransferDTO request) {
+		accountOperationsService.transferInAccount(request);
 	}
 }
