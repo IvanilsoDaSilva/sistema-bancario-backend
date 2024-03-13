@@ -37,19 +37,22 @@ This project is intended to provide a solid foundation for anyone just starting 
   ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=FFFFFF&color=FF00FF)&nbsp;
 
   <!-- Softwares -->
-  ![Eclipse](https://img.shields.io/badge/Eclipse-FE7A16.svg?style=for-the-badge&logo=Eclipse&logoColor=FFFFFF&color=FF00FF)&nbsp;
+  ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=FFFFFF&color=FF00FF)&nbsp;
 
   <!-- Others -->
+  ![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=FFFFFF&color=FF00FF)&nbsp;
   ![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=FFFFFF&color=FF00FF)&nbsp;
   
 </div>
 
-<h2 align="right" id="ponto1">1.4. HOW TO USE 💡</h2>
+<h2 align="right">1.4. HOW TO USE 💡</h2>
 <p align="right">Use the following commands (if there are commands) by <kbd>CTRL</kbd>+<kbd>V</kbd> where necessary</p>
 
 📌 IMPORT CODE THROUGH MAVEN INTO YOUR IDE
 
-<h2 align="right">1.5. OTHER REPOSITORIES 📘</h2>
+<h2 align="right">1.5. END-POINTS 🚪</h2>
+
+<h2 align="right">1.6. OTHER REPOSITORIES 📘</h2>
 
 <div>
   <img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=IvanilsoDaSilva&repo=sistema-bancario-frontend&bg_color=FF00FF&title_color=FFFFFF&text_color=FFFFFF&icon_color=FFFFFF"/>

@@ -66,3 +66,4 @@ SHOW GRANTS FOR 'SB_gerente_baixo'@'localhost';
 -- Mostrar todos os usuários
 -- -----------------------------------------------------
 SELECT * FROM user;
+-- REPAIR TABLE db;
