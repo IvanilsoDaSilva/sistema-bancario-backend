@@ -28,6 +28,14 @@ O Spring Boot utiliza o padrão MVC (Model-View-Controller) para separar a lógi
 
 O padrão Singleton é usado para garantir que apenas uma instância de uma classe seja criada durante a execução do aplicativo. O Spring Boot usa o padrão Singleton em muitos de seus componentes principais, como o contêiner IoC e o gerenciador de sessão. Isso ajuda a economizar recursos e garantir que os componentes principais do aplicativo estejam sempre disponíveis.
 
+O padrão Strategy é usado para definir um conjunto de algoritmos que podem ser intercambiáveis. No Spring Boot, o padrão Strategy é usado em muitos componentes, como serviços de autenticação e autorização. Os desenvolvedores podem escolher a estratégia apropriada para seu aplicativo, e o Spring Boot permite que eles mudem de estratégia sem afetar outros componentes.
+
+O padrão Builder é usado para criar objetos complexos passo a passo. No Spring Boot, o padrão Builder é usado em muitos componentes, como os objetos de configuração. Os desenvolvedores podem criar objetos de configuração de forma programática, passo a passo, em vez de ter que lidar com XML ou JSON. Isso torna mais fácil criar objetos de configuração precisos e personalizados para cada aplicativo.
+
+O padrão Template Method é usado para definir o esqueleto de um algoritmo em uma classe base, deixando os detalhes da implementação para subclasses. O Spring Boot usa o padrão Template Method em muitos de seus componentes, como os serviços de validação. Os desenvolvedores podem definir uma classe base que implementa a lógica geral de validação, mas deixar as validações específicas para as subclasses. Isso torna mais fácil reutilizar código e implementar novas funcionalidades sem precisar refatorar todo o código.
+
+O padrão Chain of Responsibility é usado para criar uma cadeia de objetos, onde cada objeto é responsável por processar uma solicitação específica. O Spring Boot usa o padrão Chain of Responsibility em muitos componentes, como filtros HTTP e interceptadores. Isso permite que os desenvolvedores adicionem facilmente novas funcionalidades ao aplicativo, sem precisar modificar o código existente.
+
 O padrão Observer é usado para notificar um conjunto de objetos quando um evento ocorre. No Spring Boot, o padrão Observer é usado em muitos componentes, como serviços de mensageria. Isso permite que os desenvolvedores definam um conjunto de observadores que serão notificados quando uma mensagem for recebida, por exemplo. Isso torna mais fácil para os desenvolvedores criar aplicativos escaláveis e resilientes.
 
 <h2 align="right">1.2.3. SOLID</h2>
