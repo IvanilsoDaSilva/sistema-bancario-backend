@@ -20,6 +20,18 @@ Bem-vindo ao repositório sistema-bancario-backend, um projeto desenvolvido dura
 
 Este repositorio mantem o backend do sistema que funciona junto a um [frontend](https://github.com/IvanilsoDaSilva/sistema-bancario-frontend) separado. Essa parte se trata do backend e foi utilizada pelas materias de Projeto Orientado a Objetos e Administração de Banco de Dados com meu grupo [@Micael](https://github.com/micaelgomestavares) e [@Caike](https://github.com/CaikeLobo).
 
+<h2 align="right">1.2.1. PADRÃO DE DESIGNER DE ARQUITETURA</h2>
+
+O Spring Boot utiliza o padrão MVC (Model-View-Controller) para separar a lógica de negócios, a apresentação e o controle de fluxo em diferentes componentes. Isso ajuda a manter o código organizado e torna mais fácil para os desenvolvedores trabalharem em diferentes partes do aplicativo. O modelo é responsável pela representação dos dados do aplicativo, a visão é responsável pela interface do usuário e o controlador é responsável por gerenciar as interações entre o modelo e a visão.
+
+<h2 align="right">1.2.2. PADRÃO DE PROJETO</h2>
+
+O padrão Singleton é usado para garantir que apenas uma instância de uma classe seja criada durante a execução do aplicativo. O Spring Boot usa o padrão Singleton em muitos de seus componentes principais, como o contêiner IoC e o gerenciador de sessão. Isso ajuda a economizar recursos e garantir que os componentes principais do aplicativo estejam sempre disponíveis.
+
+O padrão Observer é usado para notificar um conjunto de objetos quando um evento ocorre. No Spring Boot, o padrão Observer é usado em muitos componentes, como serviços de mensageria. Isso permite que os desenvolvedores definam um conjunto de observadores que serão notificados quando uma mensagem for recebida, por exemplo. Isso torna mais fácil para os desenvolvedores criar aplicativos escaláveis e resilientes.
+
+<h2 align="right">1.2.3. SOLID</h2>
+
 <h2 align="right">1.3. TECHNOLOGIES 💻</h2>
 
 <div style="display: inline_block">
