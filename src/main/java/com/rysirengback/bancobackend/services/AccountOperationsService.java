@@ -6,6 +6,10 @@ import com.rysirengback.bancobackend.entities.AccountEntity;
 import com.rysirengback.bancobackend.entities.IndividualPersonEntity;
 import com.rysirengback.bancobackend.entities.LegalPersonEntity;
 import com.rysirengback.bancobackend.repositories.*;
+import com.rysirengback.bancobackend.services.depositstrategy.DepositStrategyService;
+import com.rysirengback.bancobackend.services.depositstrategy.SystemDepositService;
+import com.rysirengback.bancobackend.services.loginstrategy.LoginStrategyService;
+import com.rysirengback.bancobackend.services.withdrawstrategy.WithdrawStrategyService;
 import lombok.RequiredArgsConstructor;
 
 import jakarta.transaction.Transactional;
@@ -19,15 +23,18 @@ import org.springframework.web.server.ResponseStatusException;
 @RequiredArgsConstructor(onConstructor = @__({@Autowired}))
 @Service
 public class AccountOperationsService {
+	@Autowired
+	SystemDepositService systemDeposit;
+	private final ModelMapper modelMapper;
 	private final AccountRepository accountRepository;
 	private final IndividualPersonRepository individualPersonRepository;
 	private final LegalPersonRepository legalPersonRepository;
-	private final ModelMapper modelMapper;
 	
 	@Transactional
-	public ReadAccountDTO logInAccount(LoginAccountDTO request) {
+	public ReadAccountDTO logInAccount(LoginAccountDTO request, LoginStrategyService loginMethod) {
 		ReadAccountDTO response;
-		AccountEntity account = accountRepository.findByNumberAndPassword(request.getNumber(), request.getPassword());
+
+		AccountEntity account = loginMethod.login(request);
 		
 		response = modelMapper.map(account, ReadAccountDTO.class);
 		
@@ -47,29 +54,21 @@ public class AccountOperationsService {
 		
 		return response;
 	}
-	
 	@Transactional
-	public void depositInAccount(DepositDTO request) {
+	public void depositInAccount(DepositDTO request, DepositStrategyService depositMethod) {
 		if (request.getBalance()>0) {
-			AccountEntity account = modelMapper.map(accountRepository.findById(request.getId()), AccountEntity.class);
-			
-			account.setBalance(account.getBalance()+request.getBalance());
-			
-			accountRepository.save(account);
+			depositMethod.deposit(request);
 		} else {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
 	@Transactional
-	public void withdrawInAccount(WithdrawDTO request) {
+	public void withdrawInAccount(WithdrawDTO request, WithdrawStrategyService withdrawMethod) {
 		AccountEntity account = modelMapper.map(accountRepository.findById(request.getId()), AccountEntity.class);
 		
 		if (request.getBalance() <= account.getBalance() && request.getBalance()>0) {
-			
-			account.setBalance(account.getBalance()-request.getBalance());
-			
-			accountRepository.save(account);
+			withdrawMethod.withdraw(request);
 		} else {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
