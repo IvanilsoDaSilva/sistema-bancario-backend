@@ -50,7 +50,7 @@ O padrão Chain of Responsibility é usado para criar uma cadeia de objetos, ond
 
 O padrão Observer é usado para notificar um conjunto de objetos quando um evento ocorre. No Spring Boot, o padrão Observer é usado em muitos componentes, como serviços de mensageria. Isso permite que os desenvolvedores definam um conjunto de observadores que serão notificados quando uma mensagem for recebida, por exemplo. Isso torna mais fácil para os desenvolvedores criar aplicativos escaláveis e resilientes.
 
-<img width=100% src="https://ivanilsodasilva.github.io/read-me/assets/sistema-bancario-backend/inversao-controle-injecao-dependencia.png"/>
+<img width=100% src="https://ivanilsodasilva.github.io/read-me/assets/sistema-bancario-backend/inversion-control-injection-dependence.png"/>
 
 É muito comum encontrarmos forte acoplamento entre componentes ou classes dentro de uma solução. Este termo se refere a situações onde um objeto depende de outro bem específico para existir. O forte acoplamento em softwares faz com que a manutenção se torne bastante complicada, pois geralmente a alteração de um elemento gera a necessidade de alteração em outros, devido a dependência entre eles.
 
