@@ -50,6 +50,12 @@ O padrão Chain of Responsibility é usado para criar uma cadeia de objetos, ond
 
 O padrão Observer é usado para notificar um conjunto de objetos quando um evento ocorre. No Spring Boot, o padrão Observer é usado em muitos componentes, como serviços de mensageria. Isso permite que os desenvolvedores definam um conjunto de observadores que serão notificados quando uma mensagem for recebida, por exemplo. Isso torna mais fácil para os desenvolvedores criar aplicativos escaláveis e resilientes.
 
+<img width=100% src="https://ivanilsodasilva.github.io/read-me/assets/sistema-bancario-backend/inversion-control-injection-dependence.png"/>
+
+É muito comum encontrarmos forte acoplamento entre componentes ou classes dentro de uma solução. Este termo se refere a situações onde um objeto depende de outro bem específico para existir. O forte acoplamento em softwares faz com que a manutenção se torne bastante complicada, pois geralmente a alteração de um elemento gera a necessidade de alteração em outros, devido a dependência entre eles.
+
+Inversão de Controle é implementada utilizando um outro princípio chamado Injeção de Dependência. Basicamente, a Inversão de Controle é uma forma diferente que temos para manipular o controle sobre um objeto. Já a injeção de dependência é um padrão de desenvolvimento de programas de computadores utilizado quando é necessário manter baixo o nível de acoplamento entre diferentes módulos de um sistema.
+
 <h2 align="right">1.2.3. SOLID</h2>
 
 <h2 align="right">1.3. TECHNOLOGIES 💻</h2>
@@ -98,6 +104,7 @@ O padrão Observer é usado para notificar um conjunto de objetos quando um even
 <h2 align="right">1.7. FONTS 📚</h2>
 <a href="https://medium.com/desenvolvendo-com-paixao/o-que-%C3%A9-solid-o-guia-completo-para-voc%C3%AA-entender-os-5-princ%C3%ADpios-da-poo-2b937b3fc530">www.medium.com</a>
 <a href="https://www.dio.me/articles/alguns-dos-principais-padroes-de-projeto-presentes-no-spring-boot">www.dio.me</a>
+<a href="https://www.devmedia.com.br/introducao-a-inversao-de-controle/29698">www.devmedia.com.br</a>
 
 <!-- Animated img -->
 <img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=FF00FF&height=120&section=footer"/>
