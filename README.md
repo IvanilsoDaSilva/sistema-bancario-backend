@@ -90,6 +90,101 @@ Inversão de Controle é implementada utilizando um outro princípio chamado Inj
 
 <h2 align="right">1.5. END-POINTS 🚪</h2>
 
+📌Login : /account/login  
+Entra em uma conta já criada 
+
+Body de request  
+```.json
+{
+  "number":Numero da conta/String,
+  "password":Senha da conta/String,
+}
+```
+Body de Response
+```.json
+{
+  "id": ID da conta/String,
+  "name": Nome da pessoa (Em conta de pessoa fisica)/String,
+  "cpf": CPF da pessoa (Em conta de pessoa fisica)/String,
+  "rg": RG da pessoa (Em conta de pessoa fisica)/String,
+  "birth": Data de nascimento da pessoa (Em conta de pessoa fisica)/String,
+  "companyName": Razão social da empresa (Em conta de pessoa juridica)/String,
+  "cnpj": "CNPJ da empresa (Em conta de pessoa juridica)/String,
+  "agencyCode": Numero da agencia da conta/String,
+  "number":Numero da conta/String,
+  "balance": Saldo da conta/Double,
+  "locked": Bloqueio da conta/Boolean,
+  "legalPersonId": ID da pessoa jurdica(Em conta de pessoa juridica)/String,
+  "individualPersonId": ID da pessoa fisica(Em conta de pessoa fisica)/String,
+}
+```
+
+📌Criar uma conta individual : /account/individual-person/create  
+Cria uma conta de pessoa fisica 
+
+Body de request  
+```.json
+{
+  "name": Nome da pessoa (Em conta de pessoa fisica)/String,
+  "cpf": CPF da pessoa (Em conta de pessoa fisica)/String,
+  "rg": RG da pessoa (Em conta de pessoa fisica)/String,
+  "birth": Data de nascimento da pessoa (Em conta de pessoa fisica)/String,
+  "accountType": Tipo da conta/Enum(CORRENTE, POUPANCA, PAGAMENTOS, UNIVERSITARIA),
+  "password":Senha da conta/String,
+  "agencyCode": Numero da agencia da conta/String,
+}
+```
+Body de Response
+```.json
+{
+  "id": ID da conta/String,
+  "name": Nome da pessoa (Em conta de pessoa fisica)/String,
+  "cpf": CPF da pessoa (Em conta de pessoa fisica)/String,
+  "rg": RG da pessoa (Em conta de pessoa fisica)/String,
+  "birth": Data de nascimento da pessoa (Em conta de pessoa fisica)/String,
+  "companyName": Razão social da empresa (Em conta de pessoa juridica)/String,
+  "cnpj": "CNPJ da empresa (Em conta de pessoa juridica)/String,
+  "agencyCode": Numero da agencia da conta/String,
+  "number":Numero da conta/String,
+  "balance": Saldo da conta/Double,
+  "locked": Bloqueio da conta/Boolean,
+  "legalPersonId": ID da pessoa jurdica(Em conta de pessoa juridica)/String,
+  "individualPersonId": ID da pessoa fisica(Em conta de pessoa fisica)/String,
+}
+```
+
+📌Criar uma conta juridica : /account/legal-person/create  
+Cria uma conta de pessoa juridica 
+
+Body de request  
+```.json
+{
+  "razaoSocial": Nome da pessoa (Em conta de pessoa fisica)/String,
+  "cnpj": CPF da pessoa (Em conta de pessoa fisica)/String,
+  "accountType": Tipo da conta/Enum(CORRENTE, POUPANCA, PAGAMENTOS, UNIVERSITARIA),
+  "password":Senha da conta/String,
+  "agencyCode": Numero da agencia da conta/String,
+}
+```
+Body de Response
+```.json
+{
+  "id": ID da conta/String,
+  "name": Nome da pessoa (Em conta de pessoa fisica)/String,
+  "cpf": CPF da pessoa (Em conta de pessoa fisica)/String,
+  "rg": RG da pessoa (Em conta de pessoa fisica)/String,
+  "birth": Data de nascimento da pessoa (Em conta de pessoa fisica)/String,
+  "companyName": Razão social da empresa (Em conta de pessoa juridica)/String,
+  "cnpj": "CNPJ da empresa (Em conta de pessoa juridica)/String,
+  "agencyCode": Numero da agencia da conta/String,
+  "number":Numero da conta/String,
+  "balance": Saldo da conta/Double,
+  "locked": Bloqueio da conta/Boolean,
+  "legalPersonId": ID da pessoa jurdica(Em conta de pessoa juridica)/String,
+  "individualPersonId": ID da pessoa fisica(Em conta de pessoa fisica)/String,
+}
+```
+
 <h2 align="right">1.6. OTHER REPOSITORIES 📘</h2>
 
 <div>
